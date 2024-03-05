@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\myFirstGame\\SDL_Tutorial_Online\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{82035909-E14F-4070-85C3-5F597D82E081}|SDL_Tutorial_Online.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\SDL_Tutorial_Online\\graphics.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{82035909-E14F-4070-85C3-5F597D82E081}|SDL_Tutorial_Online.vcxproj|solutionrelative:graphics.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{82035909-E14F-4070-85C3-5F597D82E081}|SDL_Tutorial_Online.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\SDL_Tutorial_Online\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{82035909-E14F-4070-85C3-5F597D82E081}|SDL_Tutorial_Online.vcxproj|solutionrelative:Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{82035909-E14F-4070-85C3-5F597D82E081}|SDL_Tutorial_Online.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\SDL_Tutorial_Online\\gameFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{82035909-E14F-4070-85C3-5F597D82E081}|SDL_Tutorial_Online.vcxproj|solutionrelative:gameFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{82035909-E14F-4070-85C3-5F597D82E081}|SDL_Tutorial_Online.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\SDL_Tutorial_Online\\graphics.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{82035909-E14F-4070-85C3-5F597D82E081}|SDL_Tutorial_Online.vcxproj|solutionrelative:graphics.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,11 +22,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "gameFunctions.h",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\SDL_Tutorial_Online\\gameFunctions.h",
               "RelativeDocumentMoniker": "gameFunctions.h",
@@ -35,25 +35,24 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-03-04T13:58:25.509Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "graphics.h",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\SDL_Tutorial_Online\\graphics.h",
               "RelativeDocumentMoniker": "graphics.h",
               "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\SDL_Tutorial_Online\\graphics.h",
               "RelativeToolTip": "graphics.h",
-              "ViewState": "AQIAAEsAAAAAAAAAAAAAAGMAAAACAAAA",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAYwDIAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-03-04T13:58:37.808Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Source.cpp",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\SDL_Tutorial_Online\\Source.cpp",
               "RelativeDocumentMoniker": "Source.cpp",
