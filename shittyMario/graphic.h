@@ -32,9 +32,6 @@ struct Graphics {
 		renderer = SDL_CreateRenderer(window, -1,
 			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-		//renderer =
-		SDL_CreateSoftwareRenderer(SDL_GetWindowSurface(window));
-
 		if (renderer == nullptr)
 			logErrorAndExit("CreateRenderer", SDL_GetError());
 
@@ -42,19 +39,16 @@ struct Graphics {
 		SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
 	}
 
-	void prepareScene(SDL_Texture* background)
-	{
+	void prepareScene(SDL_Texture* background) {
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, background, NULL, NULL);
 	}
 
-	void presentScene()
-	{
+	void presentScene() {
 		SDL_RenderPresent(renderer);
 	}
 
-	SDL_Texture* loadTexture(const char* filename)
-	{
+	SDL_Texture* loadTexture(const char* filename) {
 		SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO,
 			"Loading %s", filename);
 		SDL_Texture* texture = IMG_LoadTexture(renderer, filename);
@@ -65,8 +59,7 @@ struct Graphics {
 		return texture;
 	}
 
-	void renderTexture(SDL_Texture* texture, int x, int y)
-	{
+	void renderTexture(SDL_Texture* texture, int x, int y) {
 		SDL_Rect dest;
 
 		dest.x = x;
@@ -76,23 +69,7 @@ struct Graphics {
 		SDL_RenderCopy(renderer, texture, NULL, &dest);
 	}
 
-	void renderSpecificTexture(SDL_Texture* texture, int x, int y, SDL_Rect* clip = NULL) {
-
-		SDL_Rect dest;
-		dest.x = x;
-		dest.y = y;
-		if (clip != NULL) {
-			dest.w = clip->w;
-			dest.h = clip->h;
-		}
-		else {
-			SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
-		}
-		SDL_RenderCopy(renderer, texture, clip, &dest);
-
-	}
-	void quit()
-	{
+	void quit() {
 		SDL_DestroyRenderer(renderer);
 		SDL_DestroyWindow(window);
 		IMG_Quit();

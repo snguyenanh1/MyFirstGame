@@ -33,6 +33,7 @@ struct Menu {
 			case SDL_QUIT:
 				exit(0);
 				break;
+
 			}
 			SDL_Delay(50);
 		}
