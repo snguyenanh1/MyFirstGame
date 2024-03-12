@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\myFirstGame\\shittyMario\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5881A7DD-6E33-4491-88F4-734193C43A3E}|shittyMario.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\shittyMario\\menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5881A7DD-6E33-4491-88F4-734193C43A3E}|shittyMario.vcxproj|solutionrelative:menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{5881A7DD-6E33-4491-88F4-734193C43A3E}|shittyMario.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\shittyMario\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5881A7DD-6E33-4491-88F4-734193C43A3E}|shittyMario.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5881A7DD-6E33-4491-88F4-734193C43A3E}|shittyMario.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\shittyMario\\graphic.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{5881A7DD-6E33-4491-88F4-734193C43A3E}|shittyMario.vcxproj|solutionrelative:graphic.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5881A7DD-6E33-4491-88F4-734193C43A3E}|shittyMario.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\shittyMario\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5881A7DD-6E33-4491-88F4-734193C43A3E}|shittyMario.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{5881A7DD-6E33-4491-88F4-734193C43A3E}|shittyMario.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\shittyMario\\menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5881A7DD-6E33-4491-88F4-734193C43A3E}|shittyMario.vcxproj|solutionrelative:menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5881A7DD-6E33-4491-88F4-734193C43A3E}|shittyMario.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\shittyMario\\gameFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -26,11 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\shittyMario\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
@@ -44,13 +44,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "menu.h",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\shittyMario\\menu.h",
               "RelativeDocumentMoniker": "menu.h",
               "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\shittyMario\\menu.h",
               "RelativeToolTip": "menu.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAUAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAABiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-03-08T08:26:50.763Z",
               "IsPinned": true,
@@ -66,8 +66,7 @@
               "RelativeToolTip": "gameFunctions.h",
               "ViewState": "AQIAAAwAAAAAAAAAAAAAAC4AAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-08T06:21:51.479Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-08T06:21:51.479Z"
             },
             {
               "$type": "Document",
@@ -77,7 +76,7 @@
               "RelativeDocumentMoniker": "graphic.h",
               "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\shittyMario\\graphic.h",
               "RelativeToolTip": "graphic.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAA5AAAA",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAAACAAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-03-07T15:43:12.855Z",
               "EditorCaption": ""
