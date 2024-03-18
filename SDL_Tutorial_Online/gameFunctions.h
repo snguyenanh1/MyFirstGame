@@ -4,8 +4,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
+const int SCREEN_WIDTH = 350;
+const int SCREEN_HEIGHT = 485;
 const char* WINDOW_TITLE = "SDL_Tutorial";
 
 
