@@ -32,9 +32,6 @@ struct Graphics {
 		renderer = SDL_CreateRenderer(window, -1,
 			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-		//renderer =
-		SDL_CreateSoftwareRenderer(SDL_GetWindowSurface(window));
-
 		if (renderer == nullptr)
 			logErrorAndExit("CreateRenderer", SDL_GetError());
 
