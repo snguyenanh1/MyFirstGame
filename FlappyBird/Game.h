@@ -13,12 +13,13 @@ private:
 	bool isRunning;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
+	SDL_Texture* flappyBird;
 public:
-	Game();
-	~Game();
+	//Game();
+	//~Game();
 	void init();
-	void render();
-	void update();
+	//void render();
+	//void update();
 	void handleEvents();
 	void logErrorAndExit(const char* msg, const char* error);
 	void clean();
@@ -26,7 +27,8 @@ public:
 	void presentScene();
 	SDL_Texture* loadTexture(const char* filename);
 	void renderTexture(SDL_Texture* texture, int x, int y);
-	void GetGameState();
+	bool getState();
+	SDL_Texture* getFlappyBirdTexture() const;
 };
 
 #endif // _GAME__H

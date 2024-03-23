@@ -9,7 +9,6 @@ void Game::logErrorAndExit(const char* msg, const char* error) {
 
 void Game::init() {
 	
-	isRunning = true; 
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 		logErrorAndExit("SDL_Init", SDL_GetError());
@@ -23,6 +22,14 @@ void Game::init() {
 		logErrorAndExit("SDL_image error:", IMG_GetError());
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
+	if(renderer == nullptr)
+		logErrorAndExit("CreateRenderer", SDL_GetError());
+
+	Game::isRunning = true;
+
+	flappyBird = Game::loadTexture("asset\\birds\\bluebird-midflap.png");
+
 
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 	
@@ -74,15 +81,26 @@ void Game::clean() {
 }
 
 void Game::handleEvents() {
-	
+
 	SDL_Event event;
-	
+
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
 		case SDL_QUIT:
 			isRunning = false;
 			break;
 		case SDL_KEYDOWN:
-			if (event.key.keysym.sym == SDLK_SPACE || event.key.keysym.sym == SDLK_UP)
+			if (event.key.keysym.sym == SDLK_SPACE || event.key.keysym.sym == SDLK_UP) {
+
+			}
+		}
 	}
+}
+
+bool Game::getState() {
+	return isRunning;
+}
+
+SDL_Texture* Game::getFlappyBirdTexture() const {
+	return flappyBird;
 }
