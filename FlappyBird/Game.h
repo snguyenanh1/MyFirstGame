@@ -4,10 +4,10 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
+#include "graphics.h"
+#include "land.h"
+#include "defs.h"
 
-const int SCREEN_HEIGHT = 625;
-const int SCREEN_WIDTH = 350;
-const char* WINDOW_TITLE = "Flappy Bird";
 
 struct Position {
 	int x, y;
@@ -22,5 +22,13 @@ struct Input {
 	Type type;
 };
 
+class Game : public Graphics {
+public:
+	Land land;
+public:
+	Game();
+	bool init();
+	void renderLand();
+};
 
 #endif // _GAME__H
