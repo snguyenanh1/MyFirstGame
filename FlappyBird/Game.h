@@ -4,31 +4,25 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
-#include "graphics.h"
-#include "land.h"
 #include "defs.h"
+#include "texture.h"
+#include "ground.h"
 
-
-struct Position {
-	int x, y;
-	int angle;
-	int state;
-
-	void getPosition(const int x, const int y);
-};
-
-struct Input {
-	enum Type { QUIT, PLAY, NONE, PAUSE };
-	Type type;
-};
-
-class Game : public Graphics {
-public:
-	Land land;
+class Game {
 public:
 	Game();
-	bool init();
-	void renderLand();
+	~Game();
+	bool initGame();
+	//void loadBackground();
+	void prepareScene();
+	void presentScene();
+	void initGround();
+	void renderGround();
+	void renderBackground();
+private:
+	SDL_Window* window;
+	SDL_Renderer* renderer;
+	Ground* ground;
 };
 
 #endif // _GAME__H

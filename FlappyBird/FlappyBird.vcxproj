@@ -19,19 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bird.h" />
     <ClInclude Include="defs.h" />
     <ClInclude Include="game.h" />
-    <ClInclude Include="graphics.h" />
-    <ClInclude Include="land.h" />
-    <ClInclude Include="pipe.h" />
+    <ClInclude Include="ground.h" />
+    <ClInclude Include="texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="defs.cpp" />
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="graphics.cpp" />
-    <ClCompile Include="land.cpp" />
+    <ClCompile Include="ground.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
