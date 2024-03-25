@@ -9,6 +9,10 @@
 #include "ground.h"
 
 class Game {
+private:
+	SDL_Window* window;
+	SDL_Renderer* renderer;
+	Ground* ground;
 public:
 	Game();
 	~Game();
@@ -19,10 +23,6 @@ public:
 	void initGround();
 	void renderGround();
 	void renderBackground();
-private:
-	SDL_Window* window;
-	SDL_Renderer* renderer;
-	Ground* ground;
 };
 
 #endif // _GAME__H

@@ -7,6 +7,10 @@
 const int GROUND_WIDTH = 350;
 const int GROUND_HEIGHT = 140;
 class Ground {
+private:
+	Texture* groundTexture;
+	SDL_Rect groundRect;
+	int scrollSpeed;
 public:
 	Ground();
 	~Ground();
@@ -14,10 +18,7 @@ public:
 	void updateGround();
 	void renderGround(SDL_Renderer* renderer);
 	void freeGround();
-private:
-	Texture* groundTexture;
-	SDL_Rect groundRect;
-	int scrollSpeed;
+
 };
 
 #endif // _GROUND__H

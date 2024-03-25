@@ -5,6 +5,10 @@
 #include <SDL_image.h>
 
 class Texture {
+private:
+	SDL_Texture* texture;
+	int textureWidth;
+	int textureHeight;
 public:
 	Texture();
 	~Texture();
@@ -13,10 +17,7 @@ public:
 					   SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void renderCopy(SDL_Renderer* renderer);
 	void freeTexture();
-private:
-	SDL_Texture* texture;
-	int textureWidth;
-	int textureHeight;
+
 };
 
 #endif // _TEXTURE__H

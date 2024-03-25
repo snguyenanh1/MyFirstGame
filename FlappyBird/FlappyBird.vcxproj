@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bird.h" />
     <ClInclude Include="defs.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="ground.h" />

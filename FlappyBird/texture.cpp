@@ -31,9 +31,11 @@ void Texture::renderTexture(SDL_Renderer* renderer, int x, int y, SDL_Rect* clip
 	}
 	SDL_RenderCopyEx(renderer, texture, clip, &dest, angle, center, flip);
 }
+
 void Texture::renderCopy(SDL_Renderer* renderer) {
 	SDL_RenderCopy(renderer, texture, NULL, NULL);
 }
+
 void Texture::freeTexture() {
 	if (texture != NULL) {
 		SDL_DestroyTexture(texture);

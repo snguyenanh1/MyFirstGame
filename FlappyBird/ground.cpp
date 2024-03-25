@@ -32,6 +32,7 @@ void Ground::renderGround(SDL_Renderer* renderer) {
 		groundTexture->renderTexture(renderer, groundRect.x + GROUND_WIDTH, groundRect.y);
 	}
 }
+
 void Ground::freeGround() {
 	groundTexture->freeTexture();
 }
