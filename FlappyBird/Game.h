@@ -8,7 +8,7 @@
 #include "texture.h"
 #include "ground.h"
 
-class Game {
+class Game : public Texture {
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;

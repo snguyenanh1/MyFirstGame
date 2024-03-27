@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 
+
 class Bird {
 private:
 	std::vector<Texture*> birdTextures;
