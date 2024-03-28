@@ -49,8 +49,10 @@ void Bird::updateBird() {
 		angle = -maxAngle;
 	} 
 	else {
-		angle = maxAngle;
+		angle = std::min(maxAngle, speed*125.0/12.0);
+		
 	}
+		
 
 	if (speed >= 0) {
 		isFlappingUp = false;

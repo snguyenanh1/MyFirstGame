@@ -20,8 +20,8 @@ private:
 	double speed;
 	double angle;
 	const double gravity = 0.5;
-	const double maxSpeed = 15.0;
-	const double maxAngle = 25.0;
+	const double maxSpeed = 12.0;
+	const double maxAngle = 45.0;
 	//const double step = 0.1;
 	const double flapSpeed = -9.0;
 	bool isFlapping;

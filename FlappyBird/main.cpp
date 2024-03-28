@@ -12,6 +12,7 @@ int main(int argc, char* argv[]) {
 
 
     while (!quit) {
+       game.prepareScene();
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT) {
                 quit = true;
@@ -29,7 +30,7 @@ int main(int argc, char* argv[]) {
         game.renderGround(); 
         game.presentScene(); 
 
-        SDL_Delay(20);
+        SDL_Delay(15);
     }
 
     return 0;
