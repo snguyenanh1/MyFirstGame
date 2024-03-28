@@ -44,3 +44,11 @@ void Texture::freeTexture() {
 		textureHeight = 0;
 	}
 }
+
+int Texture::getTextureWidth() {
+	return textureWidth;
+}
+
+int Texture::getTextureHeight() {
+	return textureHeight;
+}

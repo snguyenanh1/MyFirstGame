@@ -6,8 +6,9 @@
 
 const int GROUND_WIDTH = 350;
 const int GROUND_HEIGHT = 140;
-class Ground : public Texture {
+class Ground {
 private:
+	Texture* groundTexture;
 	SDL_Rect groundRect;
 	int scrollSpeed;
 public:

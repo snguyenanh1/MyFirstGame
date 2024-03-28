@@ -63,3 +63,20 @@ void Game::renderBackground() {
 	background->renderTexture(renderer, 0, 0);
 	presentScene();
 }
+
+void Game::initBird() {
+	bird = new Bird();
+	bird->loadBird(renderer);
+}
+
+void Game::updateBird() {
+	bird->updateBird();
+}
+
+void Game::renderBird() {
+	bird->renderBird(renderer);
+}
+
+void Game::flapBird() {
+	bird->flap();
+}

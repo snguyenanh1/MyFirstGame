@@ -26,6 +26,7 @@
     <ClInclude Include="texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bird.cpp" />
     <ClCompile Include="defs.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="ground.cpp" />

@@ -7,12 +7,14 @@
 #include "defs.h"
 #include "texture.h"
 #include "ground.h"
+#include "bird.h"
 
-class Game : public Texture {
+class Game {
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	Ground* ground;
+	Bird* bird;
 public:
 	Game();
 	~Game();
@@ -23,6 +25,10 @@ public:
 	void initGround();
 	void renderGround();
 	void renderBackground();
+	void initBird();
+	void renderBird();
+	void updateBird();
+	void flapBird();
 };
 
 #endif // _GAME__H

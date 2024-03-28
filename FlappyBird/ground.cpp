@@ -1,7 +1,8 @@
 #include "ground.h"
-
+#include <iostream>
 
 Ground::Ground() {
+	groundTexture = NULL;
 	groundRect = { 0, SCREEN_HEIGHT - GROUND_HEIGHT, GROUND_WIDTH, GROUND_HEIGHT };
 	scrollSpeed = 2;
 }
@@ -11,7 +12,8 @@ Ground::~Ground() {
 }
 
 bool Ground::loadGround(SDL_Renderer* renderer, const char* path) {
-	if (loadTexture(renderer, path)) {
+	groundTexture = new Texture();
+	if (!groundTexture->loadTexture(renderer, path)) {
 		return false;
 	}
 	return true;
@@ -25,12 +27,12 @@ void Ground::updateGround() {
 }
 
 void Ground::renderGround(SDL_Renderer* renderer) {
-	renderTexture(renderer, groundRect.x, groundRect.y);
+	groundTexture->renderTexture(renderer, groundRect.x, groundRect.y);
 	if (groundRect.x <= 0) {
-		renderTexture(renderer, groundRect.x + GROUND_WIDTH, groundRect.y);
+		groundTexture->renderTexture(renderer, groundRect.x + GROUND_WIDTH, groundRect.y);
 	}
 }
 
 void Ground::freeGround() {
-	freeTexture();
+	groundTexture->freeTexture();
 }
