@@ -1,9 +1,15 @@
 #include "game.h"
 
+
+const int TARGET_FPS = 60;  
+Uint32 frameStart, frameTime;
+
+
 int main(int argc, char* argv[]) {
     Game game;
+    game.initSDL();
     game.initGame();
-    game.renderBackground();
+    game.prepareScene();
     game.initGround();
     game.initBird();
 
@@ -12,7 +18,8 @@ int main(int argc, char* argv[]) {
 
 
     while (!quit) {
-       game.prepareScene();
+    
+        frameStart = SDL_GetTicks();
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT) {
                 quit = true;
@@ -25,12 +32,15 @@ int main(int argc, char* argv[]) {
 
         game.updateBird(); 
         game.prepareScene(); 
-        game.renderBackground(); 
+        game.renderBackground();
         game.renderBird(); 
         game.renderGround(); 
         game.presentScene(); 
 
-        SDL_Delay(15);
+        frameTime = SDL_GetTicks() - frameStart;
+        if (frameTime < 1000 / TARGET_FPS) {
+          SDL_Delay((1000 / TARGET_FPS) - frameTime);
+        }
     }
 
     return 0;

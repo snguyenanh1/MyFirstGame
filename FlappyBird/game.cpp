@@ -4,6 +4,8 @@ Game::Game() {
 	window = NULL;
 	renderer = NULL;
 	ground = new Ground();
+	background = new Texture();
+	srand(time(NULL));
 }
 
 Game::~Game() {
@@ -13,7 +15,7 @@ Game::~Game() {
 	SDL_Quit();
 }
 
-bool Game::initGame() {
+bool Game::initSDL() {
 	bool success = true;
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "Initialize SDL %s", SDL_GetError());
@@ -39,6 +41,11 @@ bool Game::initGame() {
 	return success;
 }
 
+bool Game::initGame() {
+	background->loadTexture(renderer, "assets/image/background.png");
+	return true;
+}
+
 void Game::prepareScene() {
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(renderer);
@@ -58,10 +65,7 @@ void Game::renderGround() {
 }
 
 void Game::renderBackground() {
-	Texture* background = new Texture();
-	background->loadTexture(renderer, "assets/image/background.png");
 	background->renderTexture(renderer, 0, 0);
-	presentScene();
 }
 
 void Game::initBird() {

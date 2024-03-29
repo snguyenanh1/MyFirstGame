@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
+#include <ctime>
 #include "defs.h"
 #include "texture.h"
 #include "ground.h"
@@ -15,11 +16,13 @@ private:
 	SDL_Renderer* renderer;
 	Ground* ground;
 	Bird* bird;
+	Texture* background;
 public:
 	Game();
 	~Game();
+	bool initSDL();
 	bool initGame();
-	//void loadBackground();
+	void loadBackground();
 	void prepareScene();
 	void presentScene();
 	void initGround();

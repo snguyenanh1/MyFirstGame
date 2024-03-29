@@ -1,10 +1,10 @@
 #include "ground.h"
-#include <iostream>
+
 
 Ground::Ground() {
 	groundTexture = NULL;
 	groundRect = { 0, SCREEN_HEIGHT - GROUND_HEIGHT, GROUND_WIDTH, GROUND_HEIGHT };
-	scrollSpeed = 2;
+	scrollSpeed = 3;
 }
 
 Ground::~Ground() {

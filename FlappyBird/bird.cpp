@@ -2,16 +2,18 @@
 #include <algorithm>
 
 Bird::Bird() {
-	birdPosition.setPosition(SCREEN_WIDTH/8, SCREEN_HEIGHT/2);
+	birdPosition.setPosition(SCREEN_WIDTH/9, SCREEN_HEIGHT/2);
 	isFlapping = false;
 	isFlappingUp = false;
 	speed = 0;
+	frameCounter = 0;
 }
 
 bool Bird::loadBird(SDL_Renderer* renderer) {
+	int idx = rand() % 3;
 	for (int i = 0; i < 3; i++) {
 		Texture* birdTexture = new Texture();
-		if (!birdTexture->loadTexture(renderer, paths[0][i].c_str())) {
+		if (!birdTexture->loadTexture(renderer, paths[idx][i].c_str())) {
 			return false;
 		}
 		birdTextures.push_back(birdTexture);
@@ -38,19 +40,20 @@ void Bird::updateBird() {
 	if (birdPosition.y < 0) {
 		birdPosition.y = 0;
 		speed = 0;
+		angle = 0;
 	}
 
 	if (birdPosition.y + birdTextures[0]->getTextureHeight() > SCREEN_HEIGHT - 140) {
 		birdPosition.y = SCREEN_HEIGHT - 140 - birdTextures[0]->getTextureHeight(); 
 		speed = 0;
+		angle = 0;
 	}
 
 	if (isFlappingUp) {
 		angle = -maxAngle;
 	} 
 	else {
-		angle = std::min(maxAngle, speed*125.0/12.0);
-		
+		angle = std::min(maxAngle, speed*7);		
 	}
 		
 
@@ -58,7 +61,12 @@ void Bird::updateBird() {
 		isFlappingUp = false;
 	}
 
-	currentFrame = (currentFrame + 1) % 3;
+	frameCounter++;
+	if (frameCounter >= framePerChange) {
+		currentFrame = (currentFrame + 1) % 3;
+		frameCounter = 0;
+	}
+	
 }
 
 void Bird::renderBird(SDL_Renderer* renderer) {

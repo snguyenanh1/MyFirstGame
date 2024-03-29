@@ -23,6 +23,7 @@
     <ClInclude Include="defs.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="ground.h" />
+    <ClInclude Include="pipe.h" />
     <ClInclude Include="texture.h" />
   </ItemGroup>
   <ItemGroup>

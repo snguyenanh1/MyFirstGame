@@ -19,13 +19,14 @@ private:
 	Position birdPosition;
 	double speed;
 	double angle;
-	const double gravity = 0.5;
+	const double gravity = 0.6;
 	const double maxSpeed = 12.0;
 	const double maxAngle = 45.0;
-	//const double step = 0.1;
-	const double flapSpeed = -9.0;
+	const double flapSpeed = -10.0;
 	bool isFlapping;
 	bool isFlappingUp;
+	int frameCounter;
+	const int framePerChange = 15;
 public:
 	Bird();
 	~Bird();
