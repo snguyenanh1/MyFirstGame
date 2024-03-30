@@ -1,17 +1,20 @@
 #include "game.h"
+#include <ctime>
+#include <cstdlib>
 
 
 const int TARGET_FPS = 60;  
 Uint32 frameStart, frameTime;
 
-
 int main(int argc, char* argv[]) {
+    srand(time(NULL));
     Game game;
     game.initSDL();
     game.initGame();
+    game.initPipe();
     game.prepareScene();
-    game.initGround();
-    game.initBird();
+    game.renderPipe();
+    game.presentScene();
 
     SDL_Event e;
     bool quit = false;
@@ -31,10 +34,15 @@ int main(int argc, char* argv[]) {
         }
 
         game.updateBird(); 
+       // game.updatePipe();
+        game.managePipe();
         game.prepareScene(); 
         game.renderBackground();
-        game.renderBird(); 
+       // game.renderBird();
+        game.renderPipe();
+        game.renderBird();
         game.renderGround(); 
+        //game.renderPipe();
         game.presentScene(); 
 
         frameTime = SDL_GetTicks() - frameStart;

@@ -45,7 +45,7 @@ void Texture::freeTexture() {
 	}
 }
 
-int Texture::getTextureWidth() {
+int Texture::getTextureWidth()  {
 	return textureWidth;
 }
 

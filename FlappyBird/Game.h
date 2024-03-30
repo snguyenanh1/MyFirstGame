@@ -4,11 +4,13 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
-#include <ctime>
+#include <vector>
+#include <cstdlib>
 #include "defs.h"
 #include "texture.h"
 #include "ground.h"
 #include "bird.h"
+#include "pipe.h"
 
 class Game {
 private:
@@ -17,21 +19,23 @@ private:
 	Ground* ground;
 	Bird* bird;
 	Texture* background;
+	std::vector<Pipe*> pipes;
 public:
 	Game();
 	~Game();
 	bool initSDL();
 	bool initGame();
-	void loadBackground();
 	void prepareScene();
 	void presentScene();
-	void initGround();
 	void renderGround();
 	void renderBackground();
-	void initBird();
 	void renderBird();
 	void updateBird();
 	void flapBird();
+	void initPipe();
+	void renderPipe();
+	void updatePipe();
+	void managePipe();
 };
 
 #endif // _GAME__H

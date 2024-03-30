@@ -5,7 +5,7 @@ Game::Game() {
 	renderer = NULL;
 	ground = new Ground();
 	background = new Texture();
-	srand(time(NULL));
+	bird = new Bird();
 }
 
 Game::~Game() {
@@ -43,6 +43,8 @@ bool Game::initSDL() {
 
 bool Game::initGame() {
 	background->loadTexture(renderer, "assets/image/background.png");
+	bird->loadBird(renderer);
+	ground->loadGround(renderer, "assets/image/land.png");
 	return true;
 }
 
@@ -55,10 +57,6 @@ void Game::presentScene() {
 	SDL_RenderPresent(renderer);
 }
 
-void Game::initGround() {
-	ground->loadGround(renderer, "assets/image/land.png");
-}
-
 void Game::renderGround() {
 	ground->updateGround();
 	ground->renderGround(renderer);
@@ -66,11 +64,6 @@ void Game::renderGround() {
 
 void Game::renderBackground() {
 	background->renderTexture(renderer, 0, 0);
-}
-
-void Game::initBird() {
-	bird = new Bird();
-	bird->loadBird(renderer);
 }
 
 void Game::updateBird() {
@@ -83,4 +76,35 @@ void Game::renderBird() {
 
 void Game::flapBird() {
 	bird->flap();
+}
+
+void Game::initPipe() {
+	Pipe* pipe = new Pipe();
+	pipe->loadPipe(renderer);
+	pipes.push_back(pipe);
+}
+
+void Game::managePipe() {
+	for (Pipe* &pipe : pipes) {
+		pipe->updatePipe();
+	}
+
+	for (auto it = pipes.begin(); it != pipes.end();) {
+		if ((*it)->isOffScreen()) {
+			delete *it;
+			it = pipes.erase(it);
+		} else {
+			++it;
+		}
+	}
+
+	if (pipes.empty() || pipes.back()->getPipePosition() < SCREEN_WIDTH - 150) {
+		initPipe();
+	}
+}
+
+void Game::renderPipe() {
+	for (Pipe* &pipe : pipes) {
+		pipe->renderPipe(renderer);
+	}
 }

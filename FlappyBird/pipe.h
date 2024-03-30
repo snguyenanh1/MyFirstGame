@@ -3,13 +3,6 @@
 
 #include "texture.h"
 #include "defs.h"
-#include <vector>
-#include <string>
-
-const std::vector<std::vector<std::string>> paths = {
-	{"assets/pipe/green/bottom.png", "assets/pipe/green/top.png"},
-	{"assets/pipe/red/bottom.png", "assets/pipe/red/top.png"},
-};
 
 class Pipe {
 private:
@@ -17,19 +10,26 @@ private:
 	Texture* bottomPipeTexture;
 	Position topPipePosition;
 	Position bottomPipePosition;
-	int pipeWidth, topPipeHeight, bottomPipeHeight;
-	const int MIN_HEIGHT = 50;
-	const int MAX_HEIGHT = 160;
-	const int PIPE_GAP = 140;
+	int topPipeHeight, bottomPipeHeight;
+	const int MIN_HEIGHT = 95;
+	const int MAX_HEIGHT = 250;
+	const int PIPE_GAP = 80;
+	//const int distance = 80;
+	const int PIPE_SPEED = 2;
+	const int PIPE_WIDTH = 65;
+	const int PIPE_HEIGHT = 373;
+	int initialSpawnPosition = SCREEN_WIDTH + PIPE_WIDTH;
 public:
 	Pipe();
 	~Pipe();
 
-	void loadPipe(SDL_Renderer* renderer);
+	bool loadPipe(SDL_Renderer* renderer);
 	void renderPipe(SDL_Renderer* renderer);
-	void movePipe(int distance);
+	void updatePipe();
+	bool isOffScreen();
 	void randomPipe();
-
+	void freePipe();
+	int getPipePosition();
 
 };
 

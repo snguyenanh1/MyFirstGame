@@ -1,6 +1,5 @@
 #include "ground.h"
 
-
 Ground::Ground() {
 	groundTexture = NULL;
 	groundRect = { 0, SCREEN_HEIGHT - GROUND_HEIGHT, GROUND_WIDTH, GROUND_HEIGHT };
