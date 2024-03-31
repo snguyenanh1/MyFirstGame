@@ -1,5 +1,7 @@
 #include "game.h"
 
+#include <iostream>
+
 Game::Game() {
 	window = nullptr;
 	renderer = nullptr;
@@ -126,34 +128,33 @@ void Game::renderPipe() {
 
 void Game::checkCollision() {
 	Position birdPos = bird->getPosition();
-	//int birdWidth =  34, birdHeight = 24;
+	//GROUND_HEIGHT = 140, PIPE_GAP = 162, PIPE_WIDTH = 65, PIPE_HEIGHT = 373;
+	//BIRD_WIDTH = 34, BIRD_HEIGHT = 24;
 
-    if (bird->getPosition().x + 24 == SCREEN_HEIGHT - 140) {
-        isOver = true;
+	if(birdPos.y + 24 >= SCREEN_HEIGHT - 140) {
+	    isOver = true;
 		return;
-    }
-	  
-    for (Pipe* &pipe : pipes) {
-	    Position topPipePos = pipe->getTopPipePosition();
-		Position bottomPipePos = pipe->getBottomPipePosition();
-		//int width = 65, height = 373, gap = 172
+	}
 
-		if (birdPos.x + 34 >= topPipePos.x && birdPos.x + 34 <= topPipePos.x + 65 
-			&&  birdPos.y + 24 >= 0 && birdPos.y + 24 <= 373 - topPipePos.y) {
+	for (Pipe* &pipe : pipes) {
+	    Position topPipePos = pipe->getTopPipePosition();
+		Position bottomPipePos = pipe->getTopPipePosition();
+
+		if (birdPos.x + 34 >= topPipePos.x &&  birdPos.x <= topPipePos.x + 65 && birdPos.y <= 373 - topPipePos.y) {
 		    isOver = true;
 			return;
 		}
 
-		if (birdPos.x + 34 >= bottomPipePos.x && birdPos.x + 34 >= bottomPipePos.x + 65 
-			&&  birdPos.y + 24 >= SCREEN_HEIGHT - 140 && birdPos.y + 24 <= 373 - topPipePos.y + 172) {
+		if (birdPos.x + 34 >= bottomPipePos.x && birdPos.x <= bottomPipePos.x + 65 && birdPos.y + 24 >= 373 - topPipePos.y + 162) {
 		    isOver = true;
 			return;
-		}           
+		}
 	}
+
 }
 
 void Game::handleGameOver() {
-    gameOverTexture->renderTexture(renderer, SCREEN_WIDTH/3, SCREEN_HEIGHT/2);
+    gameOverTexture->renderTexture(renderer, 50, 150);
 }
 
 bool Game::isGameOver() {

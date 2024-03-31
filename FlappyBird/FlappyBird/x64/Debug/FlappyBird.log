@@ -1,3 +1,2 @@
-﻿  main.cpp
-C:\Users\Admin\Documents\myFirstGame\FlappyBird\main.cpp(10,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+﻿  game.cpp
   FlappyBird.vcxproj -> C:\Users\Admin\Documents\myFirstGame\FlappyBird\x64\Debug\FlappyBird.exe

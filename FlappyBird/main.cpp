@@ -15,7 +15,6 @@ int main(int argc, char* argv[]) {
 
     SDL_Event e;
     bool quit = false;
-//TODO: fix check collision
 
     while (!quit) {
         game.prepareScene();
@@ -26,28 +25,28 @@ int main(int argc, char* argv[]) {
             }
            
             else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE) {
-                if(!game.isGameOver())
+                //if(!game.isGameOver())
                     game.flapBird();
             }
         }
-        if (game.isGameOver()) {
-            game.handleGameOver();
-        }
+        
         game.checkCollision();
         game.updateBird(); 
         game.managePipe();
         game.renderBackground();
         game.renderPipe();
         game.renderBird();
-        game.renderGround(); 
-        game.presentScene(); 
-        if (game.isGameOver()) {
-            break;
-        }
+        game.renderGround();
+        //game.handleGameOver();
+        game.presentScene();
+        /*if (game.isGameOver()) {
+            game.handleGameOver();
+        }*/
         frameTime = SDL_GetTicks() - frameStart;
         if (frameTime < 1000 / TARGET_FPS) {
           SDL_Delay((1000 / TARGET_FPS) - frameTime);
         }
+       
     }
 
     return 0;

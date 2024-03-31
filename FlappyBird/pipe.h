@@ -10,14 +10,14 @@ private:
 	Texture* bottomPipeTexture;
 	Position topPipePosition;
 	Position bottomPipePosition;
-	const int MIN_HEIGHT = 95;
-	const int MAX_HEIGHT = 250;
-	const int PIPE_GAP = 172;
+	const int minHeight = 95;
+	const int maxHeight = 250;
+	const int pipeGap = 162;
 	//const int distance = 80;
-	const int PIPE_SPEED = 2;
-	const int PIPE_WIDTH = 65;
-	const int PIPE_HEIGHT = 373;
-	int initialSpawnPosition = SCREEN_WIDTH + PIPE_WIDTH;
+	const int pipeSpeed = 2;
+    const int pipeWidth = 65;
+    const int pipeHeight = 373;
+	int initialSpawnPosition = SCREEN_WIDTH + pipeWidth;
 public:
 	Pipe();
 	~Pipe();
@@ -30,9 +30,6 @@ public:
 	void freePipe();
     Position getTopPipePosition();
     Position getBottomPipePosition();
-    int getPipeWidth();
-    int getPipeHeight();
-
 };
 
 #endif // _PIPE__H

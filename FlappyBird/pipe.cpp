@@ -26,17 +26,17 @@ bool Pipe::loadPipe(SDL_Renderer* renderer) {
 }
 
 void Pipe::randomPipe() {
-	topPipePosition.y = MIN_HEIGHT + rand() % (MAX_HEIGHT - MIN_HEIGHT + 1);
-	bottomPipePosition.y = PIPE_HEIGHT - topPipePosition.y + PIPE_GAP;
+	topPipePosition.y = minHeight + rand() % (maxHeight - minHeight + 1);
+	bottomPipePosition.y = pipeHeight - topPipePosition.y + pipeGap;
 }
 
 void Pipe::updatePipe() {
-		topPipePosition.x -= PIPE_SPEED;
-		bottomPipePosition.x -= PIPE_SPEED;
+		topPipePosition.x -= pipeSpeed;
+		bottomPipePosition.x -= pipeSpeed;
 }
 
 bool Pipe::isOffScreen() {
-	return topPipePosition.x + PIPE_WIDTH < 0;
+	return topPipePosition.x + pipeWidth < 0;
 }
 
 void Pipe::renderPipe(SDL_Renderer* renderer) {
@@ -61,12 +61,4 @@ Position Pipe::getTopPipePosition() {
 
 Position Pipe::getBottomPipePosition() {
     return bottomPipePosition;
-}
-
-int Pipe::getPipeWidth() {
-    return PIPE_WIDTH;
-}
-
-int Pipe::getPipeHeight() {
-    return PIPE_HEIGHT;
 }

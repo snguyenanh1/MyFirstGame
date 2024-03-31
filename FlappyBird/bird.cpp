@@ -87,14 +87,6 @@ Bird::~Bird() {
 	freeBird();
 }
 
-int Bird::getWidth() {
-    return birdTextures[0]->getTextureWidth();
-}
-
-int Bird::getHeight() {
-    return birdTextures[0]->getTextureHeight();
-}
-
 Position Bird::getPosition() {
     return birdPosition;
 }

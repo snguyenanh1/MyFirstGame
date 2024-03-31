@@ -35,8 +35,6 @@ public:
 	void flap();
 	void renderBird(SDL_Renderer* renderer);
 	void freeBird();
-    int getWidth();
-    int getHeight();
 	Position getPosition();
 };
 
