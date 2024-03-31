@@ -1,7 +1,7 @@
 #include "ground.h"
 
 Ground::Ground() {
-	groundTexture = NULL;
+	groundTexture = nullptr;
 	groundRect = { 0, SCREEN_HEIGHT - GROUND_HEIGHT, GROUND_WIDTH, GROUND_HEIGHT };
 	scrollSpeed = 3;
 }

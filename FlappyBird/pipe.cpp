@@ -1,13 +1,12 @@
 #include "pipe.h"
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 
 Pipe::Pipe() {
 	topPipeTexture = NULL();
 	bottomPipeTexture = NULL();
-	topPipeHeight = 0;
-	bottomPipeHeight = 0;
 	topPipePosition.x = SCREEN_WIDTH + 65;
 	bottomPipePosition.x = SCREEN_WIDTH + 65;
 	randomPipe();
@@ -21,15 +20,14 @@ bool Pipe::loadPipe(SDL_Renderer* renderer) {
 	topPipeTexture = new Texture();
 	bottomPipeTexture = new Texture();
 	if (!topPipeTexture->loadTexture(renderer, "assets/pipe/top.png") ||
-		!bottomPipeTexture->loadTexture(renderer, "assets/pipe/bottom.png")) {
+		!bottomPipeTexture->loadTexture(renderer, "assets/pipe/bottom.png"))
 		return false;
-	}
 	return true;
 }
 
 void Pipe::randomPipe() {
-	topPipeHeight = MIN_HEIGHT + rand() % (MAX_HEIGHT - MIN_HEIGHT + 1);
-	bottomPipeHeight = SCREEN_HEIGHT - topPipeHeight - PIPE_GAP;
+	topPipePosition.y = MIN_HEIGHT + rand() % (MAX_HEIGHT - MIN_HEIGHT + 1);
+	bottomPipePosition.y = SCREEN_HEIGHT - topPipePosition.y - PIPE_GAP;
 }
 
 void Pipe::updatePipe() {
@@ -42,21 +40,33 @@ bool Pipe::isOffScreen() {
 }
 
 void Pipe::renderPipe(SDL_Renderer* renderer) {
-	topPipeTexture->renderTexture(renderer, topPipePosition.x, 0 - topPipeHeight);
-	bottomPipeTexture->renderTexture(renderer, bottomPipePosition.x, bottomPipeHeight);
+	topPipeTexture->renderTexture(renderer, topPipePosition.x, 0 - topPipePosition.y);
+	bottomPipeTexture->renderTexture(renderer, bottomPipePosition.x, bottomPipePosition.y);
 }
 
 void Pipe::freePipe() {
-	if (topPipeTexture != NULL) {
+	if (topPipeTexture != nullptr) {
 		topPipeTexture->freeTexture();
 		delete topPipeTexture;
 	}
-	if (bottomPipeTexture != NULL) {
+	if (bottomPipeTexture != nullptr) {
 		bottomPipeTexture->freeTexture();
 		delete bottomPipeTexture;
 	}
 }
 
-int Pipe::getPipePosition() {
-	return topPipePosition.x;
+Position Pipe::getTopPipePosition() {
+    return topPipePosition;
+}
+
+Position Pipe::getBottomPipePosition() {
+    return bottomPipePosition;
+}
+
+int Pipe::getPipeWidth() {
+    return PIPE_WIDTH;
+}
+
+int Pipe::getPipeHeight() {
+    return PIPE_HEIGHT;
 }

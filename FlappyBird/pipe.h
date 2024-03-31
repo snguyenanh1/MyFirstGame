@@ -10,7 +10,6 @@ private:
 	Texture* bottomPipeTexture;
 	Position topPipePosition;
 	Position bottomPipePosition;
-	int topPipeHeight, bottomPipeHeight;
 	const int MIN_HEIGHT = 95;
 	const int MAX_HEIGHT = 250;
 	const int PIPE_GAP = 80;
@@ -29,7 +28,10 @@ public:
 	bool isOffScreen();
 	void randomPipe();
 	void freePipe();
-	int getPipePosition();
+    Position getTopPipePosition();
+    Position getBottomPipePosition();
+    int getPipeWidth();
+    int getPipeHeight();
 
 };
 

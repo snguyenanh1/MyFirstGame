@@ -19,7 +19,11 @@ private:
 	Ground* ground;
 	Bird* bird;
 	Texture* background;
+	Texture* gameOverTexture;
+	//Texture* medalTexture;
+	//std::vector<int> points;
 	std::vector<Pipe*> pipes;
+	bool isOver;
 public:
 	Game();
 	~Game();
@@ -32,10 +36,12 @@ public:
 	void renderBird();
 	void updateBird();
 	void flapBird();
-	void initPipe();
+	void spawnPipe();
 	void renderPipe();
-	void updatePipe();
 	void managePipe();
+	void checkCollision();
+	void handleGameOver();
+	bool isGameOver();
 };
 
 #endif // _GAME__H

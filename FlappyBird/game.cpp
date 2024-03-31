@@ -1,14 +1,28 @@
 #include "game.h"
 
 Game::Game() {
-	window = NULL;
-	renderer = NULL;
+	window = nullptr;
+	renderer = nullptr;
 	ground = new Ground();
 	background = new Texture();
+	gameOverTexture = new Texture();
 	bird = new Bird();
+	isOver = false;
 }
 
 Game::~Game() {
+	for (Pipe* &pipe : pipes) {
+	    delete pipe;
+		pipe = nullptr;
+    }
+	delete ground;
+	delete background;
+	delete bird;
+	delete gameOverTexture;
+	ground = nullptr;
+	background = nullptr;
+	bird = nullptr;
+	gameOverTexture = nullptr;
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	IMG_Quit();
@@ -22,7 +36,7 @@ bool Game::initSDL() {
 		success = false;
 	}
 	window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-	if (window == NULL) {
+	if (window == nullptr) {
 		SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "Create window %s", SDL_GetError());
 		success = false;
 	}
@@ -31,7 +45,7 @@ bool Game::initSDL() {
 		success = false;
 	}
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	if (renderer == NULL) {
+	if (renderer == nullptr) {
 		SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "Create renderer %s", SDL_GetError());
 		success = false;
 	}
@@ -45,6 +59,7 @@ bool Game::initGame() {
 	background->loadTexture(renderer, "assets/image/background.png");
 	bird->loadBird(renderer);
 	ground->loadGround(renderer, "assets/image/land.png");
+	gameOverTexture->loadTexture(renderer, "assets/image/gameOver.png");
 	return true;
 }
 
@@ -78,7 +93,7 @@ void Game::flapBird() {
 	bird->flap();
 }
 
-void Game::initPipe() {
+void Game::spawnPipe() {
 	Pipe* pipe = new Pipe();
 	pipe->loadPipe(renderer);
 	pipes.push_back(pipe);
@@ -98,8 +113,8 @@ void Game::managePipe() {
 		}
 	}
 
-	if (pipes.empty() || pipes.back()->getPipePosition() < SCREEN_WIDTH - 150) {
-		initPipe();
+	if (pipes.empty() || pipes.back()->getTopPipePosition().x < SCREEN_WIDTH - 150) {
+		spawnPipe();
 	}
 }
 
@@ -107,4 +122,40 @@ void Game::renderPipe() {
 	for (Pipe* &pipe : pipes) {
 		pipe->renderPipe(renderer);
 	}
+}
+
+void Game::checkCollision() {
+	Position birdPos = bird->getPosition();
+	//int birdWidth =  34, birdHeight = 24;
+
+    if (bird->getPosition().x + 24 >= SCREEN_HEIGHT - 140) {
+        isOver = true;
+		return;
+    }
+	  
+    for (Pipe* &pipe : pipes) {
+	    Position topPipePos = pipe->getTopPipePosition();
+		Position bottomPipePos = pipe->getBottomPipePosition();
+		//int width = 65, height = 373, gap = 172
+
+		if (birdPos.x + 34 >= topPipePos.x && birdPos.x + 34 <= topPipePos.x + 65 
+			&&  birdPos.y + 24 >= 0 && birdPos.y + 24 <= topPipePos.y + 373) {
+		    isOver = true;
+			return;
+		}
+
+		if (birdPos.x + 34 >= bottomPipePos.x && birdPos.x + 34 >= bottomPipePos.x + 65 
+			&&  birdPos.y + 24 >= SCREEN_HEIGHT - 140 && birdPos.y + 24 <= 373 - topPipePos.y + 172) {
+		    isOver = true;
+			return;
+		}           
+	}
+}
+
+void Game::handleGameOver() {
+    gameOverTexture->renderTexture(renderer, SCREEN_WIDTH/3, SCREEN_HEIGHT/2);
+}
+
+bool Game::isGameOver() {
+    return isOver;
 }

@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\bird.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|solutionrelative:bird.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\pipe.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|solutionrelative:pipe.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|solutionrelative:texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -23,16 +15,12 @@
       "RelativeMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|solutionrelative:game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\pipe.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|solutionrelative:pipe.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\pipe.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|solutionrelative:pipe.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\texture.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|solutionrelative:texture.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\defs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{55BDC8B0-D0C8-4B1E-A93E-68B460CE2B80}|FlappyBird.vcxproj|solutionrelative:defs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,106 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "pipe.cpp",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\pipe.cpp",
               "RelativeDocumentMoniker": "pipe.cpp",
               "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\pipe.cpp",
               "RelativeToolTip": "pipe.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAACkAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-30T17:29:11.093Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "main.cpp",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\main.cpp",
-              "RelativeDocumentMoniker": "main.cpp",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\main.cpp",
-              "RelativeToolTip": "main.cpp",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAAAkAAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-30T17:04:50.425Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "game.cpp",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\game.cpp",
-              "RelativeDocumentMoniker": "game.cpp",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\game.cpp",
-              "RelativeToolTip": "game.cpp",
-              "ViewState": "AQIAAEgAAAAAAAAAAAAgwGgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-30T17:02:27.139Z",
+              "WhenOpened": "2024-03-31T11:46:49.945Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "defs.h",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\defs.h",
+              "RelativeDocumentMoniker": "defs.h",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\defs.h",
+              "RelativeToolTip": "defs.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-31T11:28:23.742Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\main.cpp",
+              "RelativeDocumentMoniker": "main.cpp",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\main.cpp",
+              "RelativeToolTip": "main.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-31T08:57:01.106Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "game.cpp",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\game.cpp",
+              "RelativeDocumentMoniker": "game.cpp",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\game.cpp",
+              "RelativeToolTip": "game.cpp",
+              "ViewState": "AQIAAJIAAAAAAAAAAAApwJsAAABOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-31T08:03:35.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "game.h",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\game.h",
               "RelativeDocumentMoniker": "game.h",
               "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\game.h",
               "RelativeToolTip": "game.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAARAAAA",
+              "ViewState": "AQIAAB0AAAAAAAAAAAApwCsAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T17:00:07.435Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "texture.cpp",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\texture.cpp",
-              "RelativeDocumentMoniker": "texture.cpp",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\texture.cpp",
-              "RelativeToolTip": "texture.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-30T16:29:05.429Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "texture.h",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\texture.h",
-              "RelativeDocumentMoniker": "texture.h",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\texture.h",
-              "RelativeToolTip": "texture.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T16:29:01.88Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "pipe.h",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\pipe.h",
-              "RelativeDocumentMoniker": "pipe.h",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\pipe.h",
-              "RelativeToolTip": "pipe.h",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABQAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-29T17:33:37.294Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "bird.h",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\bird.h",
-              "RelativeDocumentMoniker": "bird.h",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\myFirstGame\\FlappyBird\\bird.h",
-              "RelativeToolTip": "bird.h",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABwAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-28T15:28:12.261Z",
+              "WhenOpened": "2024-03-30T17:00:07.435Z",
               "EditorCaption": ""
             }
           ]

@@ -13,8 +13,8 @@ public:
 	Texture();
 	~Texture();
 	bool loadTexture(SDL_Renderer* renderer, const char* path);
-	void renderTexture(SDL_Renderer* renderer, int x, int y, SDL_Rect* clip = NULL, double angle = 0.0,		
-					   SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	void renderTexture(SDL_Renderer* renderer, int x, int y, SDL_Rect* clip = nullptr, double angle = 0.0,		
+					   SDL_Point* center = nullptr, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void renderCopy(SDL_Renderer* renderer);
 	void freeTexture();
 	int getTextureWidth();

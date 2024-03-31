@@ -70,7 +70,7 @@ void Bird::updateBird() {
 }
 
 void Bird::renderBird(SDL_Renderer* renderer) {
-	birdTextures[currentFrame]->renderTexture(renderer, birdPosition.x, birdPosition.y, NULL, angle);
+	birdTextures[currentFrame]->renderTexture(renderer, birdPosition.x, birdPosition.y, nullptr, angle);
 }
 
 void Bird::freeBird() {
@@ -85,4 +85,16 @@ void Bird::flap() {
 
 Bird::~Bird() {
 	freeBird();
+}
+
+int Bird::getWidth() {
+    return birdTextures[0]->getTextureWidth();
+}
+
+int Bird::getHeight() {
+    return birdTextures[0]->getTextureHeight();
+}
+
+Position Bird::getPosition() {
+    return birdPosition;
 }
