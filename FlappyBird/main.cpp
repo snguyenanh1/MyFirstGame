@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
 
     SDL_Event e;
     bool quit = false;
-
+//TODO: fix check collision
 
     while (!quit) {
         game.prepareScene();

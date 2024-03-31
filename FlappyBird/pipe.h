@@ -12,7 +12,7 @@ private:
 	Position bottomPipePosition;
 	const int MIN_HEIGHT = 95;
 	const int MAX_HEIGHT = 250;
-	const int PIPE_GAP = 80;
+	const int PIPE_GAP = 172;
 	//const int distance = 80;
 	const int PIPE_SPEED = 2;
 	const int PIPE_WIDTH = 65;

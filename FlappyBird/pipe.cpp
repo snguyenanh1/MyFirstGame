@@ -27,7 +27,7 @@ bool Pipe::loadPipe(SDL_Renderer* renderer) {
 
 void Pipe::randomPipe() {
 	topPipePosition.y = MIN_HEIGHT + rand() % (MAX_HEIGHT - MIN_HEIGHT + 1);
-	bottomPipePosition.y = SCREEN_HEIGHT - topPipePosition.y - PIPE_GAP;
+	bottomPipePosition.y = PIPE_HEIGHT - topPipePosition.y + PIPE_GAP;
 }
 
 void Pipe::updatePipe() {

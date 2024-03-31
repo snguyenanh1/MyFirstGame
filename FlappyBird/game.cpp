@@ -128,7 +128,7 @@ void Game::checkCollision() {
 	Position birdPos = bird->getPosition();
 	//int birdWidth =  34, birdHeight = 24;
 
-    if (bird->getPosition().x + 24 >= SCREEN_HEIGHT - 140) {
+    if (bird->getPosition().x + 24 == SCREEN_HEIGHT - 140) {
         isOver = true;
 		return;
     }
@@ -139,7 +139,7 @@ void Game::checkCollision() {
 		//int width = 65, height = 373, gap = 172
 
 		if (birdPos.x + 34 >= topPipePos.x && birdPos.x + 34 <= topPipePos.x + 65 
-			&&  birdPos.y + 24 >= 0 && birdPos.y + 24 <= topPipePos.y + 373) {
+			&&  birdPos.y + 24 >= 0 && birdPos.y + 24 <= 373 - topPipePos.y) {
 		    isOver = true;
 			return;
 		}
