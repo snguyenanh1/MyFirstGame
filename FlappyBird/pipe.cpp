@@ -5,10 +5,10 @@
 
 
 Pipe::Pipe() {
-	topPipeTexture = NULL();
-	bottomPipeTexture = NULL();
-	topPipePosition.x = SCREEN_WIDTH + 65;
-	bottomPipePosition.x = SCREEN_WIDTH + 65;
+	topPipeTexture = nullptr;
+	bottomPipeTexture = nullptr;
+	topPipePosition.x = SCREEN_WIDTH + 30;
+	bottomPipePosition.x = SCREEN_WIDTH + 30;
 	randomPipe();
 }
 
@@ -36,8 +36,9 @@ void Pipe::updatePipe() {
 }
 
 bool Pipe::isOffScreen() {
-	return topPipePosition.x + pipeWidth < 0;
+	return (topPipePosition.x + pipeWidth < 0) || (topPipePosition.y < - pipeHeight && bottomPipePosition.y > SCREEN_HEIGHT - 140);
 }
+
 
 void Pipe::renderPipe(SDL_Renderer* renderer) {
 	topPipeTexture->renderTexture(renderer, topPipePosition.x, 0 - topPipePosition.y);
@@ -61,4 +62,14 @@ Position Pipe::getTopPipePosition() {
 
 Position Pipe::getBottomPipePosition() {
     return bottomPipePosition;
+}
+
+void Pipe::updateDeadPipe() {
+    topPipePosition.y += 5;
+	bottomPipePosition.y += 5;
+}
+
+void Pipe::renderDeadPipe(SDL_Renderer* renderer) {
+    topPipeTexture->renderTexture(renderer, topPipePosition.x, 0 - topPipePosition.y);
+	bottomPipeTexture->renderTexture(renderer, bottomPipePosition.x, bottomPipePosition.y);
 }

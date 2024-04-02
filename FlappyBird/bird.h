@@ -36,6 +36,7 @@ public:
 	void renderBird(SDL_Renderer* renderer);
 	void freeBird();
 	Position getPosition();
+	bool updateDeadBird();
 };
 
 #endif // _BIRD__H

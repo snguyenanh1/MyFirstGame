@@ -75,7 +75,7 @@ void Game::presentScene() {
 }
 
 void Game::renderGround() {
-	ground->updateGround();
+	if (!isOver) ground->updateGround();
 	ground->renderGround(renderer);
 }
 
@@ -101,7 +101,7 @@ void Game::spawnPipe() {
 	pipes.push_back(pipe);
 }
 
-void Game::managePipe() {
+/*void Game::managePipe() {
 	for (Pipe* &pipe : pipes) {
 		pipe->updatePipe();
 	}
@@ -118,11 +118,41 @@ void Game::managePipe() {
 	if (pipes.empty() || pipes.back()->getTopPipePosition().x < SCREEN_WIDTH - 150) {
 		spawnPipe();
 	}
+}*/
+
+void Game::managePipe() {
+    if (!isOver) {
+        for (Pipe* & pipe : pipes) {
+            pipe->updatePipe();
+        }
+   
+        if (pipes.empty() || pipes.back()->getTopPipePosition().x < SCREEN_WIDTH - 150) {
+            spawnPipe();
+        }
+    }
+	else {
+	    for (Pipe* & pipe : pipes) {
+	        pipe-> updateDeadPipe();
+	    }
+	}
+
+    for (auto it = pipes.begin(); it != pipes.end();) {
+        if ((*it)->isOffScreen()) {
+            delete *it;
+            it = pipes.erase(it);
+        }
+        else {
+            ++it;
+        }
+    }
 }
+
+
 
 void Game::renderPipe() {
 	for (Pipe* &pipe : pipes) {
-		pipe->renderPipe(renderer);
+		if (!isOver) pipe->renderPipe(renderer);
+		else pipe->renderDeadPipe(renderer);
 	}
 }
 
@@ -153,10 +183,15 @@ void Game::checkCollision() {
 
 }
 
-void Game::handleGameOver() {
+void Game::renderGameOver() {
     gameOverTexture->renderTexture(renderer, 50, 150);
 }
 
 bool Game::isGameOver() {
     return isOver;
 }
+
+bool Game::updateDeadBird() {
+    return bird->updateDeadBird();
+}
+

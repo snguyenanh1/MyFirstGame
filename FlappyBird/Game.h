@@ -40,8 +40,9 @@ public:
 	void renderPipe();
 	void managePipe();
 	void checkCollision();
-	void handleGameOver();
+	void renderGameOver();
 	bool isGameOver();
+	bool updateDeadBird();
 };
 
 #endif // _GAME__H

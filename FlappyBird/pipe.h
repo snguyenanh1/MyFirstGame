@@ -13,11 +13,9 @@ private:
 	const int minHeight = 95;
 	const int maxHeight = 250;
 	const int pipeGap = 162;
-	//const int distance = 80;
 	const int pipeSpeed = 2;
     const int pipeWidth = 65;
     const int pipeHeight = 373;
-	int initialSpawnPosition = SCREEN_WIDTH + pipeWidth;
 public:
 	Pipe();
 	~Pipe();
@@ -25,6 +23,8 @@ public:
 	bool loadPipe(SDL_Renderer* renderer);
 	void renderPipe(SDL_Renderer* renderer);
 	void updatePipe();
+	void updateDeadPipe();
+	void renderDeadPipe(SDL_Renderer* renderer);
 	bool isOffScreen();
 	void randomPipe();
 	void freePipe();

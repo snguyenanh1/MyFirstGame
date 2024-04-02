@@ -1,6 +1,8 @@
 #include "bird.h"
 #include <algorithm>
 
+#include "ground.h"
+
 Bird::Bird() {
 	birdPosition.setPosition(SCREEN_WIDTH/9, SCREEN_HEIGHT/2);
 	isFlapping = false;
@@ -61,13 +63,14 @@ void Bird::updateBird() {
 		isFlappingUp = false;
 	}
 
-	frameCounter++;
+    frameCounter++;
 	if (frameCounter >= framePerChange) {
 		currentFrame = (currentFrame + 1) % 3;
 		frameCounter = 0;
 	}
-	
+
 }
+
 
 void Bird::renderBird(SDL_Renderer* renderer) {
 	birdTextures[currentFrame]->renderTexture(renderer, birdPosition.x, birdPosition.y, nullptr, angle);
@@ -89,4 +92,14 @@ Bird::~Bird() {
 
 Position Bird::getPosition() {
     return birdPosition;
+}
+
+bool Bird::updateDeadBird() {
+    angle = 45;
+	currentFrame = 1;
+    if(birdPosition.y < SCREEN_HEIGHT - birdTextures[0]->getTextureHeight() - GROUND_HEIGHT) {
+        birdPosition.y += maxSpeed;
+		return false;
+    }
+	return true;
 }

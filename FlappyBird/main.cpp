@@ -29,19 +29,25 @@ int main(int argc, char* argv[]) {
                     game.flapBird();
             }
         }
-        
+        bool dead = false;
         game.checkCollision();
-        game.updateBird(); 
+        if (!game.isGameOver()) {
+            game.updateBird();
+            //game.managePipe();
+           
+        }
+        else {
+           dead = game.updateDeadBird();
+        }
         game.managePipe();
         game.renderBackground();
         game.renderPipe();
         game.renderBird();
+        if (dead) {
+            game.renderGameOver();
+        }
         game.renderGround();
-        //game.handleGameOver();
         game.presentScene();
-        /*if (game.isGameOver()) {
-            game.handleGameOver();
-        }*/
         frameTime = SDL_GetTicks() - frameStart;
         if (frameTime < 1000 / TARGET_FPS) {
           SDL_Delay((1000 / TARGET_FPS) - frameTime);

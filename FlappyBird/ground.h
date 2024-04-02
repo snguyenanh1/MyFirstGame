@@ -18,7 +18,6 @@ public:
 	void updateGround();
 	void renderGround(SDL_Renderer* renderer);
 	void freeGround();
-
 };
 
 #endif // _GROUND__H
