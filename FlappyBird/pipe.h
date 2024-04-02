@@ -3,7 +3,7 @@
 
 #include "texture.h"
 #include "defs.h"
-
+//todo: sua initialspawn bo pipeWidth
 class Pipe {
 private:
 	Texture* topPipeTexture;
