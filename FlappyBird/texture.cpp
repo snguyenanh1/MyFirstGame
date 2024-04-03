@@ -40,8 +40,6 @@ void Texture::freeTexture() {
 	if (texture != nullptr) {
 		SDL_DestroyTexture(texture);
 		texture = nullptr;
-		textureWidth = 0;
-		textureHeight = 0;
 	}
 }
 

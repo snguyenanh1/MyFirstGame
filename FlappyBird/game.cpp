@@ -22,10 +22,12 @@ Game::~Game() {
 	delete background;
 	delete bird;
 	delete gameOverTexture;
+	delete score;
 	ground = nullptr;
 	background = nullptr;
 	bird = nullptr;
 	gameOverTexture = nullptr;
+	score = nullptr;
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	IMG_Quit();

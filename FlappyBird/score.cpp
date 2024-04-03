@@ -69,14 +69,12 @@ void Score::renderSmallScore(SDL_Renderer* renderer) {
 void Score::renderLargeScore(SDL_Renderer* renderer) {
     std::string score = std::to_string(currentScore);
     int width = largeTextures[0]->getTextureWidth();
-    int totalWidth = 0;
-    for (char& digit : score) {
-        totalWidth += width;
-    }
-    int startPosX = (SCREEN_WIDTH - totalWidth) / 2;
-    for (int i = score.length() - 1; i >= 0; i--) {
-        largeTextures[score[i] - '0']->renderTexture(renderer, startPosX, 50);
-        startPosX -= width;
+    int totalWidth = width*score.length();
+    int startPos = (SCREEN_WIDTH - totalWidth) / 2;
+    for (char digit : score) {
+        int digitIndex = digit - '0';
+        largeTextures[digitIndex]->renderTexture(renderer, startPos, 50);
+        startPos += width;
     }
 }
 
