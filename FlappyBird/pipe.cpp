@@ -64,12 +64,15 @@ Position Pipe::getBottomPipePosition() {
     return bottomPipePosition;
 }
 
+void Pipe::setScored(bool scored) {
+	isScored = scored;
+}
+
+bool Pipe::getScored() {
+	return isScored;
+}
+
 void Pipe::updateDeadPipe() {
     topPipePosition.y += 5;
 	bottomPipePosition.y += 5;
-}
-
-void Pipe::renderDeadPipe(SDL_Renderer* renderer) {
-    topPipeTexture->renderTexture(renderer, topPipePosition.x, 0 - topPipePosition.y);
-	bottomPipeTexture->renderTexture(renderer, bottomPipePosition.x, bottomPipePosition.y);
 }

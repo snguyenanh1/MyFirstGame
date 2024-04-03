@@ -16,6 +16,7 @@ private:
 	const int pipeSpeed = 2;
     const int pipeWidth = 65;
     const int pipeHeight = 373;
+	bool isScored = false;
 public:
 	Pipe();
 	~Pipe();
@@ -24,12 +25,13 @@ public:
 	void renderPipe(SDL_Renderer* renderer);
 	void updatePipe();
 	void updateDeadPipe();
-	void renderDeadPipe(SDL_Renderer* renderer);
 	bool isOffScreen();
 	void randomPipe();
 	void freePipe();
     Position getTopPipePosition();
     Position getBottomPipePosition();
+	void setScored(bool scored);
+	bool getScored();
 };
 
 #endif // _PIPE__H

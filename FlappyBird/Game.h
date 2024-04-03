@@ -11,6 +11,7 @@
 #include "ground.h"
 #include "bird.h"
 #include "pipe.h"
+#include "score.h"
 
 class Game {
 private:
@@ -20,6 +21,7 @@ private:
 	Bird* bird;
 	Texture* background;
 	Texture* gameOverTexture;
+	Score* score;
 	//Texture* medalTexture;
 	//std::vector<int> points;
 	std::vector<Pipe*> pipes;
@@ -43,6 +45,12 @@ public:
 	void renderGameOver();
 	bool isGameOver();
 	bool updateDeadBird();
+	void renderSmallScore();
+	void incrementScore();
+	void saveBestScore();
+	void checkBestScore();
+	void renderScore();
+	void renderMedal();
 };
 
 #endif // _GAME__H

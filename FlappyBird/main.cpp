@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
             }
            
             else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE) {
-                //if(!game.isGameOver())
+                if(!game.isGameOver())
                     game.flapBird();
             }
         }
@@ -33,8 +33,8 @@ int main(int argc, char* argv[]) {
         game.checkCollision();
         if (!game.isGameOver()) {
             game.updateBird();
-            //game.managePipe();
-           
+            game.incrementScore();
+            game.checkBestScore();
         }
         else {
            dead = game.updateDeadBird();
@@ -43,8 +43,12 @@ int main(int argc, char* argv[]) {
         game.renderBackground();
         game.renderPipe();
         game.renderBird();
+        if (!game.isGameOver()) game.renderScore();
         if (dead) {
             game.renderGameOver();
+            game.renderSmallScore();
+            game.renderMedal();
+            game.saveBestScore();
         }
         game.renderGround();
         game.presentScene();

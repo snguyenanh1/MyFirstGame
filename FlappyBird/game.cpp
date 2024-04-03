@@ -9,6 +9,7 @@ Game::Game() {
 	background = new Texture();
 	gameOverTexture = new Texture();
 	bird = new Bird();
+	score = new Score();
 	isOver = false;
 }
 
@@ -62,6 +63,7 @@ bool Game::initGame() {
 	bird->loadBird(renderer);
 	ground->loadGround(renderer, "assets/image/land.png");
 	gameOverTexture->loadTexture(renderer, "assets/image/gameOver.png");
+	score->loadImage(renderer);
 	return true;
 }
 
@@ -101,25 +103,6 @@ void Game::spawnPipe() {
 	pipes.push_back(pipe);
 }
 
-/*void Game::managePipe() {
-	for (Pipe* &pipe : pipes) {
-		pipe->updatePipe();
-	}
-
-	for (auto it = pipes.begin(); it != pipes.end();) {
-		if ((*it)->isOffScreen()) {
-			delete *it;
-			it = pipes.erase(it);
-		} else {
-			++it;
-		}
-	}
-
-	if (pipes.empty() || pipes.back()->getTopPipePosition().x < SCREEN_WIDTH - 150) {
-		spawnPipe();
-	}
-}*/
-
 void Game::managePipe() {
     if (!isOver) {
         for (Pipe* & pipe : pipes) {
@@ -151,8 +134,7 @@ void Game::managePipe() {
 
 void Game::renderPipe() {
 	for (Pipe* &pipe : pipes) {
-		if (!isOver) pipe->renderPipe(renderer);
-		else pipe->renderDeadPipe(renderer);
+	    pipe->renderPipe(renderer);
 	}
 }
 
@@ -193,5 +175,31 @@ bool Game::isGameOver() {
 
 bool Game::updateDeadBird() {
     return bird->updateDeadBird();
+}
+
+void Game::renderSmallScore() {
+	score->renderSmallScore(renderer);
+}
+
+void Game::incrementScore() {
+    if (!pipes.empty()) {
+        score->incrementScore(pipes[0], bird->getPosition());
+    }
+}
+
+void Game::saveBestScore() {
+	score->saveBestScore();
+}
+
+void Game::checkBestScore() {
+	score->checkBestScore();
+}
+
+void Game::renderScore() {
+	score->renderLargeScore(renderer);
+}
+
+void Game::renderMedal() {
+	score->renderMedal(renderer);
 }
 

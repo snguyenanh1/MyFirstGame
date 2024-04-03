@@ -24,6 +24,7 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="ground.h" />
     <ClInclude Include="pipe.h" />
+    <ClInclude Include="score.h" />
     <ClInclude Include="texture.h" />
   </ItemGroup>
   <ItemGroup>
@@ -33,6 +34,7 @@
     <ClCompile Include="ground.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pipe.cpp" />
+    <ClCompile Include="score.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

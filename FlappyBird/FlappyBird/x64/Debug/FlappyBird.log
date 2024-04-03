@@ -1,2 +1,11 @@
-﻿  pipe.cpp
+﻿  bird.cpp
+C:\Users\Admin\Documents\myFirstGame\FlappyBird\bird.cpp(101,27): warning C4244: '+=': conversion from 'const double' to 'int', possible loss of data
+  game.cpp
+  main.cpp
+C:\Users\Admin\Documents\myFirstGame\FlappyBird\main.cpp(10,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  score.cpp
+C:\Users\Admin\Documents\myFirstGame\FlappyBird\score.cpp(59,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Admin\Documents\myFirstGame\FlappyBird\score.cpp(63,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Admin\Documents\myFirstGame\FlappyBird\score.cpp(77,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
   FlappyBird.vcxproj -> C:\Users\Admin\Documents\myFirstGame\FlappyBird\x64\Debug\FlappyBird.exe
