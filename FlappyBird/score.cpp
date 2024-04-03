@@ -3,7 +3,6 @@
 #include <string>
 #include <fstream>
 
-//Todo: sua ham rendersmall sao cho giong large (render tu ki tu dau)
 Score::Score() {
     currentScore = 0;
     bestScore = 0;
