@@ -3,7 +3,6 @@
 #include <string>
 #include <fstream>
 
-
 Score::Score() {
     currentScore = 0;
     bestScore = 0;
