@@ -8,30 +8,51 @@ Game::Game() {
 	ground = new Ground();
 	background = new Texture();
 	gameOverTexture = new Texture();
+    pause = new Texture();
 	bird = new Bird();
 	score = new Score();
+    flappy = new Texture();
+    prepare = new Texture();
+    pauseButton = new Texture();
+    resumeButton = new Texture();
 	isOver = false;
+    stop = true;
+    prepareGame = true;
 }
 
 Game::~Game() {
-	for (Pipe* &pipe : pipes) {
-	    delete pipe;
-		pipe = nullptr;
+    for (Pipe* & pipe : pipes) {
+        delete pipe;
+        pipe = nullptr;
     }
-	delete ground;
-	delete background;
-	delete bird;
-	delete gameOverTexture;
-	delete score;
-	ground = nullptr;
-	background = nullptr;
-	bird = nullptr;
-	gameOverTexture = nullptr;
-	score = nullptr;
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
-	IMG_Quit();
-	SDL_Quit();
+    for (Texture* & button : buttons) {
+        delete button;
+        button = nullptr;
+    }
+    delete prepare;
+    delete flappy;
+    delete ground;
+    delete background;
+    delete bird;
+    delete gameOverTexture;
+    delete score;
+    delete pause;
+    delete pauseButton;
+    delete resumeButton;
+    ground = nullptr;
+    background = nullptr;
+    bird = nullptr;
+    gameOverTexture = nullptr;
+    score = nullptr;
+    pause = nullptr;
+    flappy = nullptr;
+    prepare = nullptr;
+    pauseButton = nullptr;
+    resumeButton = nullptr;
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    IMG_Quit();
+    SDL_Quit();
 }
 
 bool Game::initSDL() {
@@ -66,7 +87,21 @@ bool Game::initGame() {
 	ground->loadGround(renderer, "assets/image/land.png");
 	gameOverTexture->loadTexture(renderer, "assets/image/gameOver.png");
 	score->loadImage(renderer);
-	return true;
+
+	for (int i = 0; i < 2; i++) {
+	    Texture* button = new Texture();
+		if (!button->loadTexture(renderer, ("assets/buttons/" + std::to_string(i) + ".png").c_str())) {
+		    return false;
+		}
+		buttons.push_back(button);
+	}
+
+	flappy->loadTexture(renderer, "assets/image/flappy.png");
+    pause->loadTexture(renderer, "assets/image/pauseTab.png");
+    prepare->loadTexture(renderer, "assets/image/prepare.png");
+    pauseButton->loadTexture(renderer, "assets/image/pauseButton.png");
+    resumeButton->loadTexture(renderer, "assets/image/resumeButton.png");
+    return true;
 }
 
 void Game::prepareScene() {
@@ -79,24 +114,8 @@ void Game::presentScene() {
 }
 
 void Game::renderGround() {
-	if (!isOver) ground->updateGround();
+	if (!stop && !isOver) ground->updateGround();
 	ground->renderGround(renderer);
-}
-
-void Game::renderBackground() {
-	background->renderTexture(renderer, 0, 0);
-}
-
-void Game::updateBird() {
-	bird->updateBird();
-}
-
-void Game::renderBird() {
-	bird->renderBird(renderer);
-}
-
-void Game::flapBird() {
-	bird->flap();
 }
 
 void Game::spawnPipe() {
@@ -167,41 +186,151 @@ void Game::checkCollision() {
 
 }
 
-void Game::renderGameOver() {
-    gameOverTexture->renderTexture(renderer, 50, 150);
-}
 
-bool Game::isGameOver() {
-    return isOver;
-}
-
-bool Game::updateDeadBird() {
-    return bird->updateDeadBird();
-}
-
-void Game::renderSmallScore() {
-	score->renderSmallScore(renderer);
-}
-
-void Game::incrementScore() {
-    if (!pipes.empty()) {
-        score->incrementScore(pipes[0], bird->getPosition());
+void Game::handleInput(SDL_Event& e, bool& quit) {
+    int mouseX = 0, mouseY = 0;
+    switch (e.type) {
+        case SDL_QUIT:
+            quit = true;
+            break;
+        case SDL_KEYDOWN:
+            if (e.key.keysym.sym == SDLK_SPACE) {
+                switch (gameState) {
+                    case MENU:
+                        gameState = PREPARE;
+                        break;
+                    case PREPARE:
+                        gameState = PLAY;
+                        stop = false;
+                        break;
+                    case PLAY:
+                        if (!isOver) bird->flap();
+                        break;
+                    case PAUSE:
+                        gameState = PLAY;
+                        stop = false;
+                        break;
+                    case GAME_OVER:
+                        resetGame();
+                        break;
+                }
+            }
+            if (e.key.keysym.sym == SDLK_p) {
+                switch (gameState) {
+                    case PLAY:
+                        gameState = PAUSE;
+                        stop = true;
+                        break;
+                    case PAUSE:
+                        gameState = PLAY;
+                        stop = false;
+                        break;
+                }
+            }
+            if (e.key.keysym.sym == SDLK_r) {
+                if (gameState == GAME_OVER) {
+                    resetGame();
+                }
+            }
+            if (e.key.keysym.sym == SDLK_ESCAPE) {
+                switch (gameState) {
+                    case PREPARE:
+                        gameState = MENU;
+                        stop = true;
+                        break;
+                    case PLAY:
+                    case PAUSE:
+                    case GAME_OVER:
+                        gameState = MENU;
+                        stop = true;
+                        break;
+                    case MENU:
+                        quit = true;
+                        break;
+                }
+            }
+        case SDL_MOUSEBUTTONDOWN:
+            if (e.button.button == SDL_BUTTON_LEFT) {
+                SDL_GetMouseState(&mouseX, &mouseY);
+                switch (gameState) {
+                    case PAUSE:
+                        if (mouseX >= SCREEN_WIDTH - 36 && mouseX <= SCREEN_WIDTH - 10 && mouseY >= 10 && mouseY <= 38) {
+                            gameState = PLAY;
+                            stop = false;
+                        }
+                        break;
+                    case PLAY:
+                        if (mouseX >= SCREEN_WIDTH - 36 && mouseX <= SCREEN_WIDTH - 10 && mouseY >= 10 && mouseY <= 38) {
+                            gameState = PAUSE;
+                            stop = true;
+                        }
+                        break;
+                }
+            }
     }
 }
 
-void Game::saveBestScore() {
-	score->saveBestScore();
+void Game::resetGame() {
+    isOver = false;
+    bird->resetBird();
+    score->resetScore();
+    for (Pipe* & pipe : pipes) {
+        delete pipe;
+        pipe = nullptr;
+    }
+    pipes.clear();
+    gameState = PREPARE;
+    stop = true;
 }
 
-void Game::checkBestScore() {
-	score->checkBestScore();
-}
 
-void Game::renderScore() {
-	score->renderLargeScore(renderer);
+void Game::updateGame() {
+    background->renderTexture(renderer, 0, 0);
+    switch (gameState) {
+        case MENU:
+            renderGround();
+            flappy->renderTexture(renderer, SCREEN_WIDTH / 2 - 125, 100);
+            break;
+        case PREPARE:
+            renderGround();
+            bird->renderBird(renderer);
+            prepare->renderTexture(renderer, 63, 180);
+            break;
+        case PAUSE:
+            renderPipe();
+            bird->renderBird(renderer);
+            renderGround();
+            resumeButton->renderTexture(renderer, SCREEN_WIDTH - 36 , 10);
+            pause->renderTexture(renderer, 50, 232);
+            score->renderSmallScore(renderer);
+            break;
+        case PLAY:
+            renderPipe();
+            checkCollision();
+            if (!isOver) {
+                bird->updateBird();
+                score->incrementScore(pipes, bird->getPosition());
+                score->checkBestScore();
+            }
+            else {
+                gameState = GAME_OVER;
+            }
+        case GAME_OVER:  
+            if (isOver) bird->updateDeadBird();
+            managePipe();
+            renderPipe();
+            bird->renderBird(renderer);
+            if (!isOver) {
+                score->renderLargeScore(renderer);
+                pauseButton->renderTexture(renderer, SCREEN_WIDTH - 36, 10);
+            }
+            renderGround();
+            if (isOver) {
+                gameOverTexture->renderTexture(renderer, 50, 150);
+                score->renderSmallScore(renderer);
+                score->renderMedal(renderer);
+                score->saveBestScore();
+            }
+            break;
+    }
 }
-
-void Game::renderMedal() {
-	score->renderMedal(renderer);
-}
-

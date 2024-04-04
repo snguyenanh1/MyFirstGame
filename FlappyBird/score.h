@@ -18,12 +18,13 @@ public:
 	Score();
    ~Score();
     bool loadImage(SDL_Renderer* renderer);
-	void incrementScore(Pipe* pipe, Position birdPosition);
+	void incrementScore(std::vector<Pipe*>& pipes, Position birdPosition);
 	void renderSmallScore(SDL_Renderer* renderer);
 	void renderLargeScore(SDL_Renderer* renderer);
 	void renderMedal(SDL_Renderer* renderer);
 	void freeScore();
-	void saveBestScore();
+    void resetScore();
+    void saveBestScore();
 	void checkBestScore();
 };
 

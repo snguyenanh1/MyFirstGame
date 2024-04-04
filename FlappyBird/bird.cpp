@@ -4,7 +4,7 @@
 #include "ground.h"
 
 Bird::Bird() {
-	birdPosition.setPosition(SCREEN_WIDTH/9, SCREEN_HEIGHT/2);
+	birdPosition.setPosition(SCREEN_WIDTH/9, SCREEN_HEIGHT/2 - 70);
 	isFlapping = false;
 	isFlappingUp = false;
 	speed = 0;
@@ -63,23 +63,27 @@ void Bird::updateBird() {
 		isFlappingUp = false;
 	}
 
-    frameCounter++;
-	if (frameCounter >= framePerChange) {
-		currentFrame = (currentFrame + 1) % 3;
-		frameCounter = 0;
-	}
 
 }
 
+void Bird::ticks() {
+    frameCounter++;
+    if (frameCounter >= framePerChange) {
+        currentFrame = (currentFrame + 1) % 3;
+        frameCounter = 0;
+    }
+}
 
 void Bird::renderBird(SDL_Renderer* renderer) {
+	ticks();
 	birdTextures[currentFrame]->renderTexture(renderer, birdPosition.x, birdPosition.y, nullptr, angle);
 }
 
 void Bird::freeBird() {
 	for (int i = 0; i < 3; i++) {
 		birdTextures[i]->freeTexture();
-	}	
+	}
+	birdTextures.clear();
 }
 
 void Bird::flap() {
@@ -96,10 +100,18 @@ Position Bird::getPosition() {
 
 bool Bird::updateDeadBird() {
     angle = 45;
-	currentFrame = 1;
     if(birdPosition.y < SCREEN_HEIGHT - birdTextures[0]->getTextureHeight() - GROUND_HEIGHT) {
-        birdPosition.y += maxSpeed;
+        birdPosition.y += (int) maxSpeed;
 		return false;
     }
 	return true;
+}
+
+void Bird::resetBird() {
+    birdPosition.setPosition(SCREEN_WIDTH / 9, SCREEN_HEIGHT / 2 - 70);
+    isFlapping = false;
+    isFlappingUp = false;
+    speed = 0;
+    frameCounter = 0;
+    angle = 0;
 }

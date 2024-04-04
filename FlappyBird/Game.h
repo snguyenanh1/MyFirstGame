@@ -13,6 +13,14 @@
 #include "pipe.h"
 #include "score.h"
 
+enum GameStates {
+    MENU,
+	PREPARE,
+	PLAY,
+	PAUSE,
+	GAME_OVER
+};
+
 class Game {
 private:
 	SDL_Window* window;
@@ -21,11 +29,20 @@ private:
 	Bird* bird;
 	Texture* background;
 	Texture* gameOverTexture;
+	std::vector<Texture*> buttons;
+	Texture* flappy;
+	Texture* pause;
+	Texture* prepare;
+	Texture* pauseButton;
+	Texture* resumeButton;
 	Score* score;
-	//Texture* medalTexture;
-	//std::vector<int> points;
 	std::vector<Pipe*> pipes;
 	bool isOver;
+	bool stop;
+	bool prepareGame;
+	GameStates gameState;
+    ;
+
 public:
 	Game();
 	~Game();
@@ -34,23 +51,13 @@ public:
 	void prepareScene();
 	void presentScene();
 	void renderGround();
-	void renderBackground();
-	void renderBird();
-	void updateBird();
-	void flapBird();
 	void spawnPipe();
 	void renderPipe();
 	void managePipe();
 	void checkCollision();
-	void renderGameOver();
-	bool isGameOver();
-	bool updateDeadBird();
-	void renderSmallScore();
-	void incrementScore();
-	void saveBestScore();
-	void checkBestScore();
-	void renderScore();
-	void renderMedal();
+	void handleInput(SDL_Event& e, bool& quit);
+	void updateGame();
+	void resetGame();
 };
 
 #endif // _GAME__H

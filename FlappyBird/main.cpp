@@ -8,56 +8,25 @@ Uint32 frameStart, frameTime;
 
 int main(int argc, char* argv[]) {
     srand(time(nullptr));
-    Game game;
-    game.initSDL();
-    game.initGame();
-
-
-    SDL_Event e;
+    Game* game = new Game();
+    game->initSDL();
+    game->initGame();
     bool quit = false;
-
+    SDL_Event e;
     while (!quit) {
-        game.prepareScene();
         frameStart = SDL_GetTicks();
-        while (SDL_PollEvent(&e) != 0) {
-            if (e.type == SDL_QUIT) {
-                quit = true;
-            }
-           
-            else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE) {
-                if(!game.isGameOver())
-                    game.flapBird();
-            }
+        game->prepareScene();
+        while (SDL_PollEvent(&e)) {
+            game->handleInput(e, quit);
         }
-        bool dead = false;
-        game.checkCollision();
-        if (!game.isGameOver()) {
-            game.updateBird();
-            game.incrementScore();
-            game.checkBestScore();
-        }
-        else {
-           dead = game.updateDeadBird();
-        }
-        game.managePipe();
-        game.renderBackground();
-        game.renderPipe();
-        game.renderBird();
-        if (!game.isGameOver()) game.renderScore();
-        if (dead) {
-            game.renderGameOver();
-            game.renderSmallScore();
-            game.renderMedal();
-            game.saveBestScore();
-        }
-        game.renderGround();
-        game.presentScene();
+        game->updateGame();
+        game->presentScene();
         frameTime = SDL_GetTicks() - frameStart;
         if (frameTime < 1000 / TARGET_FPS) {
           SDL_Delay((1000 / TARGET_FPS) - frameTime);
         }
-       
     }
-
+    delete game;
+    game = nullptr;
     return 0;
 }

@@ -11,4 +11,6 @@ struct Position {
 
 	void setPosition(const int x, const int y);
 };
+
+
 #endif // _DEFS__H

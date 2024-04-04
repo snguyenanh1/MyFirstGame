@@ -34,11 +34,13 @@ public:
     ~Bird();
     bool loadBird(SDL_Renderer* renderer);
     void updateBird();
+    void ticks();
     void flap();
     void renderBird(SDL_Renderer* renderer);
     void freeBird();
     Position getPosition();
     bool updateDeadBird();
+    void resetBird();
 };
 
 #endif // _BIRD__H
