@@ -1,4 +1,5 @@
 #include "bird.h"
+
 #include <algorithm>
 
 #include "ground.h"
@@ -11,8 +12,7 @@ Bird::Bird() {
 	frameCounter = 0;
 }
 
-bool Bird::loadBird(SDL_Renderer* renderer) {
-	int idx = rand() % 3;
+bool Bird::loadBird(SDL_Renderer* renderer, int idx) {
 	for (int i = 0; i < 3; i++) {
 		Texture* birdTexture = new Texture();
 		if (!birdTexture->loadTexture(renderer, paths[idx][i].c_str())) {
@@ -74,9 +74,10 @@ void Bird::ticks() {
     }
 }
 
-void Bird::renderBird(SDL_Renderer* renderer) {
+void Bird::renderBird(SDL_Renderer* renderer, bool choose) {
 	ticks();
-	birdTextures[currentFrame]->renderTexture(renderer, birdPosition.x, birdPosition.y, nullptr, angle);
+    if (!choose) birdTextures[currentFrame]->renderTexture(renderer, birdPosition.x, birdPosition.y, nullptr, angle);
+	else birdTextures[currentFrame]->renderTexture(renderer, SCREEN_WIDTH/2 - 17, 250, nullptr, 0);
 }
 
 void Bird::freeBird() {
@@ -115,3 +116,5 @@ void Bird::resetBird() {
     frameCounter = 0;
     angle = 0;
 }
+
+

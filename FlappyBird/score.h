@@ -21,7 +21,7 @@ public:
 	void incrementScore(std::vector<Pipe*>& pipes, Position birdPosition);
 	void renderSmallScore(SDL_Renderer* renderer);
 	void renderLargeScore(SDL_Renderer* renderer);
-	void renderMedal(SDL_Renderer* renderer);
+    bool renderMedal(SDL_Renderer* renderer);
 	void freeScore();
     void resetScore();
     void saveBestScore();

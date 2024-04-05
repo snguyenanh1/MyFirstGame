@@ -45,7 +45,7 @@ bool Score::loadImage(SDL_Renderer* renderer) {
 void Score::incrementScore(std::vector<Pipe*> & pipes, Position birdPosition) {
     if (!pipes.empty()) {
         Pipe* pipe = pipes[0];
-        if (!pipe->getScored() && pipe->getTopPipePosition().x + 32 < birdPosition.x) {
+        if (!pipe->getScored() && pipe->getTopPipePosition().x + 65 < birdPosition.x) {
             currentScore++;
             pipe->setScored(true);
         }
@@ -93,22 +93,27 @@ void Score::checkBestScore() {
     }
 }
 
-void Score::renderMedal(SDL_Renderer* renderer) {
+bool Score::renderMedal(SDL_Renderer* renderer) {
     if (currentScore < 5) {
-        return;
+        return false;
     }
     else if (currentScore < 10) {
         medalTextures[0]->renderTexture(renderer, 75, 277);
+        return true;
     }
     else if (currentScore < 15) {
         medalTextures[1]->renderTexture(renderer, 75, 277);
+        return true;
     }
     else if (currentScore < 20) {
         medalTextures[2]->renderTexture(renderer, 75, 277);
+        return true;
     }
     else {
         medalTextures[3]->renderTexture(renderer, 75, 277);
+        return true;
     }
+    return true;
 }
 
 void Score::freeScore() {
@@ -129,3 +134,5 @@ void Score::freeScore() {
 void Score::resetScore() {
        currentScore = 0;
 }
+
+

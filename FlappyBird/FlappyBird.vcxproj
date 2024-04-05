@@ -25,6 +25,7 @@
     <ClInclude Include="ground.h" />
     <ClInclude Include="pipe.h" />
     <ClInclude Include="score.h" />
+    <ClInclude Include="sound.h" />
     <ClInclude Include="texture.h" />
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +36,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pipe.cpp" />
     <ClCompile Include="score.cpp" />
+    <ClCompile Include="sound.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -32,11 +32,11 @@ private:
 public:
     Bird();
     ~Bird();
-    bool loadBird(SDL_Renderer* renderer);
+    bool loadBird(SDL_Renderer* renderer, int idx);
     void updateBird();
     void ticks();
     void flap();
-    void renderBird(SDL_Renderer* renderer);
+    void renderBird(SDL_Renderer* renderer, bool choose = false);
     void freeBird();
     Position getPosition();
     bool updateDeadBird();
