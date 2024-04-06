@@ -335,6 +335,16 @@ void Game::handleInput(SDL_Event& e, bool& quit) {
                         }
                     }
                 }
+                if (gameState == PAUSE && mouseX >= 105 && mouseX <= 105 + 32 && mouseY >= 277 && mouseY <= 277 + 24) {
+                    if (soundOn) {
+                        soundOn = false;
+                        Mix_PauseAudio(1);
+                    }
+                    else {
+                        soundOn = true;
+                        Mix_PauseAudio(0);
+                    }
+                }
                 if (gameState != PLAY && soundOn) click->playSound();
                 switch (gameState) {
                     case MENU:
@@ -447,6 +457,7 @@ void Game::updateGame() {
             if (mouseX >= SCREEN_WIDTH / 2 - 50 && mouseX <= SCREEN_WIDTH / 2 + 50 && mouseY >= 400 && mouseY <= 450)
                 buttons[0]->renderTexture(renderer, SCREEN_WIDTH / 2 - 50, 400);
             else buttons[1]->renderTexture(renderer, SCREEN_WIDTH / 2 - 50, 400);
+            soundOn? soundButton[0]->renderTexture(renderer, 105, 277) : soundButton[1]->renderTexture(renderer, 105, 277);
             break;
         case PLAY:
             if (!backgroundMusic->isPlayedMusic() && soundOn) backgroundMusic->playMusic();
