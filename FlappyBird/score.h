@@ -25,7 +25,7 @@ public:
 	void freeScore();
     void resetScore();
     void saveBestScore();
-	void checkBestScore();
+    bool checkBestScore();
 };
 
 #endif // _SCORE__H

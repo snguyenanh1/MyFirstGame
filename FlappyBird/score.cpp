@@ -87,10 +87,12 @@ void Score::saveBestScore() {
     file.close();
 }
 
-void Score::checkBestScore() {
+bool Score::checkBestScore() {
     if (currentScore > bestScore) {
         bestScore = currentScore;
+        return true;
     }
+    return false;
 }
 
 bool Score::renderMedal(SDL_Renderer* renderer) {

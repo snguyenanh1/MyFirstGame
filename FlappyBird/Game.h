@@ -1,24 +1,25 @@
 #ifndef _GAME__H
 #define _GAME__H
 
+#include "bird.h"
+#include "defs.h"
+#include "ground.h"
+#include "pipe.h"
+#include "score.h"
+#include "sound.h"
+#include "texture.h"
+#include <cstdlib>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 #include <vector>
-#include <cstdlib>
-#include "defs.h"
-#include "texture.h"
-#include "ground.h"
-#include "bird.h"
-#include "pipe.h"
-#include "score.h"
-#include "sound.h"
 
 enum GameStates {
     MENU,
 	PREPARE,
 	PLAY,
 	PAUSE,
+	AFTER_DEAD,
 	GAME_OVER
 };
 
@@ -40,17 +41,28 @@ private:
 	Texture* rightButton;
 	Score* score;
 	std::vector<Pipe*> pipes;
+	std::vector<Texture*> soundButton;
 	Sound* backgroundMusic;
 	Sound* gameOverMedal;
 	Sound* gameOverNoMedal;
 	Sound* jump;
 	Sound* dead;
+	Sound* bestScore;
+	Sound* backgroundMenu;
+	Sound* prepareMusic;
+	Sound* gameOverMusic;
+	Sound* click;
 	bool isOver;
 	bool stop;
-	bool prepareGame;
-	bool finishedDead;
 	GameStates gameState;
+	bool soundOn;
 	int birdType;
+	int gameOverPosY = SCREEN_HEIGHT;
+	int deadDuration;
+	int deadTimer;
+	int gameOverDuration;
+	int gameOverTimer;
+    int gameOverDurationNoMedal;
 public:
 	Game();
 	~Game();
@@ -65,7 +77,8 @@ public:
 	void checkCollision();
 	void handleInput(SDL_Event& e, bool& quit);
 	void updateGame();
-	void resetGame();
+    bool updateGameOver();
+    void resetGame();
     bool deadAnimation();
 };
 

@@ -58,8 +58,8 @@ void Sound::resumeMusic() {
 }
 
 bool Sound::isPlaying() {
-    if(music) return Mix_PlayingMusic() > 0;
-    if(sound) return Mix_Playing(-1) > 0;
+    if(music) return Mix_PlayingMusic();
+    if(sound) return Mix_Playing(-1);
 }
 
 void Sound::reset() {

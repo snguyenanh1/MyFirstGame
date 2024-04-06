@@ -19,13 +19,22 @@ Game::Game() {
     backgroundMusic = new Sound();
     gameOverMedal = new Sound();
     gameOverNoMedal = new Sound();
+    bestScore = new Sound();
     jump = new Sound();
     dead = new Sound();
+    backgroundMenu = new Sound();
+    prepareMusic = new Sound();
+    gameOverMusic = new Sound();
+    click = new Sound();
 	isOver = false;
     stop = true;
-    prepareGame = true;
-    finishedDead = false;
     birdType = 0;
+    deadDuration = 165;
+    deadTimer = 0;
+    gameOverDurationNoMedal = 250;
+    gameOverDuration = 380;
+    gameOverTimer = 0;
+    soundOn = true;
 }
 
 Game::~Game() {
@@ -40,6 +49,10 @@ Game::~Game() {
     for (Bird* & bird : birds) {
         delete bird;
         bird = nullptr;
+    }
+    for (Texture* & button : soundButton) {
+        delete button;
+        button = nullptr;
     }
     delete prepare;
     delete flappy;
@@ -57,6 +70,11 @@ Game::~Game() {
     delete gameOverNoMedal;
     delete jump;
     delete dead;
+    delete bestScore;
+    delete backgroundMenu;
+    delete prepareMusic;
+    delete gameOverMusic;
+    delete click;
     ground = nullptr;
     background = nullptr;
     gameOverTexture = nullptr;
@@ -71,6 +89,11 @@ Game::~Game() {
     gameOverNoMedal = nullptr;
     jump = nullptr;
     dead = nullptr;
+    bestScore = nullptr;
+    backgroundMusic = nullptr;
+    prepareMusic = nullptr;
+    gameOverMusic = nullptr;
+    click = nullptr;
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     Mix_CloseAudio();
@@ -135,6 +158,17 @@ void Game::initGame() {
     gameOverNoMedal->loadSound("assets/sound/noMedal.wav");
     jump->loadSound("assets/sound/jump.wav");
     dead->loadSound("assets/sound/dead.wav");
+    bestScore->loadSound("assets/sound/record.wav");
+    backgroundMenu->loadMusic("assets/sound/menu.wav");
+    prepareMusic->loadMusic("assets/sound/prepare.wav");
+    gameOverMusic->loadMusic("assets/sound/gameover.wav");
+    click->loadSound("assets/sound/click.wav");
+    Texture* buttonOn = new Texture();
+    buttonOn->loadTexture(renderer, "assets/image/soundon.png");
+    soundButton.push_back(buttonOn);
+    Texture* buttonOff = new Texture();
+    buttonOff->loadTexture(renderer, "assets/image/soundoff.png");
+    soundButton.push_back(buttonOff);
 }
 
 void Game::prepareScene() {
@@ -227,6 +261,7 @@ void Game::handleInput(SDL_Event& e, bool& quit) {
             quit = true;
             break;
         case SDL_KEYDOWN:
+            if(gameState != PLAY && soundOn) click->playSound();
             if (e.key.keysym.sym == SDLK_SPACE) {
                 switch (gameState) {
                     case MENU:
@@ -238,7 +273,7 @@ void Game::handleInput(SDL_Event& e, bool& quit) {
                         break;
                     case PLAY:
                         birds[birdType]->flap();
-                        jump->playSound();
+                        if (soundOn) jump->playSound();
                         break;
                     case PAUSE:
                         gameState = PLAY;
@@ -288,12 +323,25 @@ void Game::handleInput(SDL_Event& e, bool& quit) {
         case SDL_MOUSEBUTTONDOWN:
             if (e.button.button == SDL_BUTTON_LEFT) {
                 SDL_GetMouseState(&mouseX, &mouseY);
+                if (gameState != PAUSE) {
+                    if (mouseX >= 10 && mouseX <= 10 + 32 && mouseY >= 10 && mouseY <= 10 + 24) {
+                        if (soundOn) {
+                            soundOn = false;
+                            Mix_PauseAudio(1);
+                        }
+                        else {
+                            soundOn = true;
+                            Mix_PauseAudio(0);
+                        }
+                    }
+                }
+                if (gameState != PLAY && soundOn) click->playSound();
                 switch (gameState) {
                     case MENU:
-                        if (mouseX >= SCREEN_WIDTH / 2 - 17 - 5 - 13 && mouseX <= SCREEN_WIDTH / 2 - 17 - 5 && mouseY >= 305 && mouseY <= 305 + 24) {
+                        if (mouseX >= SCREEN_WIDTH / 2 - 17 - 5 - 13 && mouseX <= SCREEN_WIDTH / 2 - 17 - 5 && mouseY >= 255 && mouseY <= 255 + 24) {
                             birdType = (birdType - 1 + 3) % 3;
                         }
-                        if (mouseX >= SCREEN_WIDTH / 2 + 17 + 5 && mouseX <= SCREEN_WIDTH / 2 + 17 + 5 + 13 && mouseY >= 305 && mouseY <= 305 + 24) {
+                        if (mouseX >= SCREEN_WIDTH / 2 + 17 + 5 && mouseX <= SCREEN_WIDTH / 2 + 17 + 5 + 13 && mouseY >= 255 && mouseY <= 255 + 24) {
                             birdType = (birdType + 1) % 3;
                         }
                         if (mouseX >= SCREEN_WIDTH / 2 - 50 && mouseX <= SCREEN_WIDTH / 2 + 50 && mouseY >= 300 && mouseY <= 350) {
@@ -319,9 +367,10 @@ void Game::handleInput(SDL_Event& e, bool& quit) {
                             gameState = PAUSE;
                             stop = true;
                         }
+                        if (mouseX >= 10 && mouseX <= 10 + 32 && mouseY >= 10 && mouseY <= 10 + 24) {}
                         else  {
                             birds[birdType]->flap();
-                            jump->playSound();
+                            if (soundOn) jump->playSound();
                         }
                         break;
                     case GAME_OVER:
@@ -345,24 +394,21 @@ void Game::resetGame() {
     pipes.clear();
     gameState = MENU;
     stop = true;
-    finishedDead = false;
     gameOverMedal->reset();
     gameOverNoMedal->reset();
+    gameOverPosY = SCREEN_HEIGHT;
     dead->reset();
-}
-
-bool Game::deadAnimation() {
-    backgroundMusic->stopMusic();
-    bool finished = false;
-    while (!finished) {
-        if (!dead->isPlayedMusic()) dead->playSound();
-        while (!birds[birdType]->updateDeadBird()) {
-            birds[birdType]->renderBird(renderer);
-        }
-        break;
-    }
-    gameState = GAME_OVER;
-    return true;
+    bestScore->reset();
+    backgroundMenu->reset();
+    prepareMusic->reset();
+    backgroundMusic->reset();
+    backgroundMenu->reset();
+    gameOverMedal->reset();
+    prepareMusic->reset();
+    gameOverNoMedal->reset();
+    gameOverMusic->reset();
+    deadTimer = 0;
+    gameOverTimer = 0;
 }
 
 void Game::updateGame() {
@@ -371,6 +417,9 @@ void Game::updateGame() {
     SDL_GetMouseState(&mouseX, &mouseY);
     switch (gameState) {
         case MENU:
+            if(gameOverMedal->isPlaying()) gameOverMedal->stopMusic();
+            if(gameOverNoMedal->isPlaying()) gameOverNoMedal->stopMusic();
+            if (!backgroundMenu->isPlayedMusic() && soundOn) backgroundMenu->playMusic();
             renderGround();
             flappy->renderTexture(renderer, SCREEN_WIDTH / 2 - 125, 100);
             birds[birdType]->renderBird(renderer, true);
@@ -379,17 +428,20 @@ void Game::updateGame() {
             if (mouseX >= SCREEN_WIDTH / 2 - 50 && mouseX <= SCREEN_WIDTH / 2 + 50 && mouseY >= 300 && mouseY <= 350)
                 buttons[0]->renderTexture(renderer, SCREEN_WIDTH / 2 - 50, 300);
             else buttons[1]->renderTexture(renderer, SCREEN_WIDTH / 2 - 50, 300);
+            soundOn ? soundButton[0]->renderTexture(renderer, 10, 10) : soundButton[1]->renderTexture(renderer, 10, 10);
             break;
         case PREPARE:
+            if (!prepareMusic->isPlayedMusic() && soundOn) prepareMusic->playMusic();
             renderGround();
             birds[birdType]->renderBird(renderer);
             prepare->renderTexture(renderer, 63, 180);
+            soundOn? soundButton[0]->renderTexture(renderer, 10, 10) : soundButton[1]->renderTexture(renderer, 10, 10);
             break;
         case PAUSE:
             renderPipe();
             birds[birdType]->renderBird(renderer);
             renderGround();
-            resumeButton->renderTexture(renderer, SCREEN_WIDTH - 36 , 10);
+            resumeButton->renderTexture(renderer, SCREEN_WIDTH - 36, 10);
             pause->renderTexture(renderer, 50, 232);
             score->renderSmallScore(renderer);
             if (mouseX >= SCREEN_WIDTH / 2 - 50 && mouseX <= SCREEN_WIDTH / 2 + 50 && mouseY >= 400 && mouseY <= 450)
@@ -397,39 +449,73 @@ void Game::updateGame() {
             else buttons[1]->renderTexture(renderer, SCREEN_WIDTH / 2 - 50, 400);
             break;
         case PLAY:
-            if (!backgroundMusic->isPlaying()) backgroundMusic->playMusic();
+            if (!backgroundMusic->isPlayedMusic() && soundOn) backgroundMusic->playMusic();
             checkCollision();
             if (!isOver) {
                 birds[birdType]->updateBird();
                 score->incrementScore(pipes, birds[birdType]->getPosition());
-                score->checkBestScore();
-            }
-        case GAME_OVER:
-            managePipe();
-            renderPipe();
-            birds[birdType]->renderBird(renderer);
-            if (!isOver) {
+                if(score->checkBestScore() && !bestScore->isPlayedMusic()) bestScore->playSound();
                 score->renderLargeScore(renderer);
                 pauseButton->renderTexture(renderer, SCREEN_WIDTH - 36, 10);
             }
+            if (isOver) gameState = AFTER_DEAD;
+            managePipe();
+            renderPipe();
+            birds[birdType]->renderBird(renderer);
             renderGround();
-            if (isOver) {
-                if (!finishedDead) finishedDead = deadAnimation();
-                else {gameOverTexture->renderTexture(renderer, 50, 150);
+            score->renderLargeScore(renderer);
+            pauseButton->renderTexture(renderer, SCREEN_WIDTH - 36, 10);
+            soundOn? soundButton[0]->renderTexture(renderer, 10, 10) : soundButton[1]->renderTexture(renderer, 10, 10);
+            break;
+        case AFTER_DEAD:
+            backgroundMusic->stopMusic();
+            if (!dead->isPlayedMusic() && soundOn) dead->playSound();
+            birds[birdType]->updateDeadBird();
+            managePipe();
+            renderPipe();
+            birds[birdType]->renderBird(renderer);
+            renderGround();
+            soundOn? soundButton[0]->renderTexture(renderer, 10, 10) : soundButton[1]->renderTexture(renderer, 10, 10);
+            if (deadTimer < deadDuration) {
+                deadTimer++;
+            }
+            else gameState = GAME_OVER;
+            break;
+        case GAME_OVER:
+            birds[birdType]->renderBird(renderer);
+            renderGround();
+            bool finished = updateGameOver();
+            gameOverTexture->renderTexture(renderer, 50, gameOverPosY);
+            soundOn? soundButton[0]->renderTexture(renderer, 10, 10) : soundButton[1]->renderTexture(renderer, 10, 10);
+            if (finished) {
                 score->renderSmallScore(renderer);
                 if (score->renderMedal(renderer)) {
-                    if (!gameOverMedal->isPlayedMusic()) gameOverMedal->playSound();
+                    if (!gameOverMedal->isPlayedMusic() && soundOn) gameOverMedal->playSound();
+                    if (gameOverTimer < gameOverDuration) gameOverTimer++;
+                    else {
+                        if (!gameOverMusic->isPlayedMusic() && soundOn) gameOverMusic->playMusic();
+                    }
                 }
                 else {
-                    if (!gameOverNoMedal->isPlayedMusic()) gameOverNoMedal->playSound();
+                    if (!gameOverNoMedal->isPlayedMusic() && soundOn) gameOverNoMedal->playSound();
+                    if (gameOverTimer < gameOverDurationNoMedal) gameOverTimer++;
+                    else {
+                        if (!gameOverMusic->isPlayedMusic() && soundOn) gameOverMusic->playMusic();
+                    }
                 }
                 score->saveBestScore();
                 if (mouseX >= SCREEN_WIDTH / 2 - 50 && mouseX <= SCREEN_WIDTH / 2 + 50 && mouseY >= 400 && mouseY <= 450)
-                    buttons[0]->renderTexture(renderer, SCREEN_WIDTH / 2 - 50,400 );
+                    buttons[0]->renderTexture(renderer, SCREEN_WIDTH / 2 - 50, 400);
                 else buttons[1]->renderTexture(renderer, SCREEN_WIDTH / 2 - 50, 400);
-                }
             }
             break;
     }
 }
 
+bool Game::updateGameOver() {
+    if (gameOverPosY > 150) {
+        gameOverPosY -= 10;
+    }
+    if (gameOverPosY < 150) gameOverPosY = 150;
+    return gameOverPosY <= 150;
+}
