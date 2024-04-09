@@ -281,6 +281,7 @@ void Game::handleInput(SDL_Event& e, bool& quit) {
                         break;
                     case GAME_OVER:
                         resetGame();
+                        Mix_HaltChannel(-1);
                         break;
                 }
             }
@@ -308,6 +309,7 @@ void Game::handleInput(SDL_Event& e, bool& quit) {
                     case PAUSE:
                     case GAME_OVER:
                         resetGame();
+                        Mix_HaltChannel(-1);;
                         break;
                     case MENU:
                         quit = true;
@@ -359,9 +361,11 @@ void Game::handleInput(SDL_Event& e, bool& quit) {
                         }
                         break;
                     case PREPARE:
-                        gameState = PLAY;
-                        stop = false;
-                        break;
+                        if (!(mouseX >= 10 && mouseX <= 10 + 32 && mouseY >= 10 && mouseY <= 10 + 24)) {
+                            gameState = PLAY;
+                            stop = false;
+                            break;
+                        }
                     case PAUSE:
                         if (mouseX >= SCREEN_WIDTH - 36 && mouseX <= SCREEN_WIDTH - 10 && mouseY >= 10 && mouseY <= 38) {
                             gameState = PLAY;
@@ -377,8 +381,7 @@ void Game::handleInput(SDL_Event& e, bool& quit) {
                             gameState = PAUSE;
                             stop = true;
                         }
-                        if (mouseX >= 10 && mouseX <= 10 + 32 && mouseY >= 10 && mouseY <= 10 + 24) {}
-                        else  {
+                        if (!(mouseX >= 10 && mouseX <= 10 + 32 && mouseY >= 10 && mouseY <= 10 + 24)) {
                             birds[birdType]->flap();
                             if (soundOn) jump->playSound();
                         }
@@ -386,6 +389,7 @@ void Game::handleInput(SDL_Event& e, bool& quit) {
                     case GAME_OVER:
                         if (mouseX >= SCREEN_WIDTH / 2 - 50 && mouseX <= SCREEN_WIDTH / 2 + 50 && mouseY >= 400 && mouseY <= 450) {
                             resetGame();
+                            Mix_HaltChannel(-1);
                         }
                         break;
                 }
@@ -427,8 +431,6 @@ void Game::updateGame() {
     SDL_GetMouseState(&mouseX, &mouseY);
     switch (gameState) {
         case MENU:
-            if(gameOverMedal->isPlaying()) gameOverMedal->stopMusic();
-            if(gameOverNoMedal->isPlaying()) gameOverNoMedal->stopMusic();
             if (!backgroundMenu->isPlayedMusic() && soundOn) backgroundMenu->playMusic();
             renderGround();
             flappy->renderTexture(renderer, SCREEN_WIDTH / 2 - 125, 100);

@@ -56,7 +56,7 @@ private:
 	bool stop;
 	GameStates gameState;
 	bool soundOn;
-	int birdType;
+    int birdType;
 	int gameOverPosY = SCREEN_HEIGHT;
 	int deadDuration;
 	int deadTimer;
