@@ -1,4 +1,4 @@
-1. Thông tin sinh viên </br>
+1. Thông tin sinh viên: </br>
   - Họ và tên: Nguyễn Anh Sơn.  </br>
   - Mã sinh viên: 23021684. </br>
 
