@@ -2,7 +2,7 @@
   - Họ và tên: Nguyễn Anh Sơn.  </br>
   - Mã sinh viên: 23021684. </br>
 
-2. Chủ đề game: Làm lại game Flappy Birds của tác giả Nguyễn Hà Đông. </br>
+2. Chủ đề game: Làm lại game Flappy Bird của tác giả Nguyễn Hà Đông. </br>
 
 3. Ngưỡng điểm mong muốn: 8.5 +. </br>
 
